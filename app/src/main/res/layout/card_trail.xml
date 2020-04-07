@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="trail"
+            type="com.example.android.trailfinder.db.entity.Trail" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/trail_cardview"
+        card_view:cardCornerRadius="@dimen/cardview_default_radius"
+        card_view:cardElevation="@dimen/cardview_default_elevation"
+        card_view:cardBackgroundColor="@color/colorPrimary">
+
+        <TextView
+            android:id="@+id/trail_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            tools:text="@string/sample_trail_title"
+            android:text="@{trail.name}"
+            android:textStyle="bold"
+            android:textColor="@color/colorIcon"
+            android:textSize="@dimen/cardview_text_size"/>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>
