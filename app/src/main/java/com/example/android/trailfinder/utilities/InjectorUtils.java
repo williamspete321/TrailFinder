@@ -1,6 +1,5 @@
 package com.example.android.trailfinder.utilities;
 
-import android.app.Application;
 import android.content.Context;
 
 import com.example.android.trailfinder.AppExecutors;

@@ -62,52 +62,46 @@ public class TrailRepository {
     }
 
     private void refreshTrailData() {
-        appExecutors.diskIO().execute(new Runnable() {
-            @Override
-            public void run() {
+        appExecutors.diskIO().execute(() -> {
 
-                boolean trailExists = (trailDao.hasTrails(getMaxRefreshTime(new Date())).size() != 0);
-                Log.d(LOG_TAG, "trailExists = " + trailExists);
+            boolean trailExists = (trailDao.hasTrails(getMaxRefreshTime(new Date())).size() != 0);
+            Log.d(LOG_TAG, "trailExists = " + trailExists);
 
-                if(!trailExists) {
+            if(!trailExists) {
 
-                    networkDataSource.getAllCurrentTrails(
-                            TrailDummyData.LAT,
-                            TrailDummyData.LON,
-                            TrailDummyData.MAX_DISTANCE,
-                            TrailDummyData.KEY).enqueue(new Callback<TrailList>() {
+                networkDataSource.getAllCurrentTrails(
+                        TrailDummyData.LAT,
+                        TrailDummyData.LON,
+                        TrailDummyData.MAX_DISTANCE,
+                        TrailDummyData.KEY).enqueue(new Callback<TrailList>() {
 
-                        @Override
-                        public void onResponse(Call<TrailList> call, Response<TrailList> response) {
-                            if(response.body() != null) {
-                                List<Trail> trails = response.body().getTrails();
-                                for (Trail trail : trails) {
-                                    trail.setLastRefresh(new Date());
-                                }
-
-                                appExecutors.diskIO().execute(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        trailDao.insertAll(trails);
-                                        Log.d(LOG_TAG, "New data inserted.");
-                                    }
-                                });
+                    @Override
+                    public void onResponse(Call<TrailList> call, Response<TrailList> response) {
+                        if(response.body() != null) {
+                            List<Trail> trails = response.body().getTrails();
+                            for (Trail trail : trails) {
+                                trail.setLastRefresh(new Date());
                             }
+
+                            appExecutors.diskIO().execute(() -> {
+                                trailDao.insertAll(trails);
+                                Log.d(LOG_TAG, "New data inserted.");
+                            });
                         }
+                    }
 
-                        @Override
-                        public void onFailure(Call<TrailList> call, Throwable t) {
-                            if(t instanceof IOException) {
-                                Log.d(LOG_TAG, "Network connection failed.");
-                            } else {
-                                Log.d(LOG_TAG, "Data conversion failed.");
+                    @Override
+                    public void onFailure(Call<TrailList> call, Throwable t) {
+                        if(t instanceof IOException) {
+                            Log.d(LOG_TAG, "Network connection failed.");
+                        } else {
+                            Log.d(LOG_TAG, "Data conversion failed.");
 
-                            }
                         }
-                    });
-                }
-
+                    }
+                });
             }
+
         });
     }
 

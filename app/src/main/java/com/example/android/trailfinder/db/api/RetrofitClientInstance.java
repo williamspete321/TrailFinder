@@ -1,7 +1,5 @@
 package com.example.android.trailfinder.db.api;
 
-import com.google.gson.internal.GsonBuildConfig;
-
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 

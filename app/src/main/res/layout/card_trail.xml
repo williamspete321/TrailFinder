@@ -14,7 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:id="@+id/trail_cardview"
-        card_view:cardCornerRadius="@dimen/cardview_default_radius"
+        android:layout_margin="@dimen/cardview_margin_vertical"
+        card_view:cardCornerRadius="@dimen/cardview_corner_radius"
         card_view:cardElevation="@dimen/cardview_default_elevation"
         card_view:cardBackgroundColor="@color/colorPrimary">
 
@@ -24,10 +25,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             tools:text="@string/sample_trail_title"
+            android:layout_margin="@dimen/big_margin"
             android:text="@{trail.name}"
             android:textStyle="bold"
             android:textColor="@color/colorIcon"
-            android:textSize="@dimen/cardview_text_size"/>
+            android:textSize="@dimen/cardview_text_size"
+            android:textAlignment="center"/>
 
     </androidx.cardview.widget.CardView>
 

@@ -2,8 +2,9 @@ package com.example.android.trailfinder.ui;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,12 +15,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.android.trailfinder.databinding.FragmentTrailListBinding;
-import com.example.android.trailfinder.db.entity.Trail;
 import com.example.android.trailfinder.utilities.InjectorUtils;
 import com.example.android.trailfinder.viewmodel.TrailListViewModel;
 import com.example.android.trailfinder.viewmodel.TrailListViewModelFactory;
 
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +28,9 @@ public class TrailListFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private TrailListAdapter adapter;
+    private LinearLayoutManager linearLayoutManager;
+    private TrailListViewModel viewModel;
+    private TrailListViewModelFactory factory;
 
     private FragmentTrailListBinding binding;
 
@@ -51,30 +53,31 @@ public class TrailListFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        setupViewModel();
+    }
+
     private void setupUI() {
         recyclerView = binding.trailListRecyclerview;
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
 
         adapter = new TrailListAdapter(getActivity());
         recyclerView.setAdapter(adapter);
+    }
 
-        TrailListViewModelFactory factory
-                = InjectorUtils.provideTrailListViewModelFactory(
-                        getActivity().getApplicationContext());
+    private void setupViewModel() {
+        factory = InjectorUtils.provideTrailListViewModelFactory(
+                getActivity().getApplicationContext());
 
-        TrailListViewModel viewModel
-                = new ViewModelProvider(this, factory).get(TrailListViewModel.class);
+        viewModel = new ViewModelProvider(this, factory).get(TrailListViewModel.class);
 
-        viewModel.getAllTrails()
-                .observe(getViewLifecycleOwner(),
-                new Observer<List<Trail>>() {
-            @Override
-            public void onChanged(List<Trail> trails) {
-                Log.d(LOG_TAG, "onChanged is called from Observer in ViewModel");
-                adapter.setData(trails);
-            }
+        viewModel.getAllTrails().observe(getViewLifecycleOwner(), trails -> {
+            Log.d(LOG_TAG, "Updating list of trails from LiveData in ViewModel");
+            adapter.setData(trails);
         });
     }
 

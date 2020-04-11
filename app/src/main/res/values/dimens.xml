@@ -7,6 +7,11 @@
     <dimen name="button_elevation">4dp</dimen>
 
     <dimen name="cardview_text_size">24sp</dimen>
+    <dimen name="cardview_corner_radius">16dp</dimen>
+    <dimen name="cardview_margin_vertical">8dp</dimen>
+
+    <dimen name="big_margin">16dp</dimen>
+    <dimen name="small_margin">8dp</dimen>
 
     <dimen name="small_padding">8dp</dimen>
     <dimen name="big_padding">16dp</dimen>

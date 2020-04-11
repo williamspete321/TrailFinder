@@ -34,12 +34,9 @@ public class MainActivityFragment extends Fragment {
         binding = FragmentMainActivityBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
-        binding.selectTrailListButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), TrailListActivity.class);
-                startActivity(intent);
-            }
+        binding.selectTrailListButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivityFragment.this.getActivity(), TrailListActivity.class);
+            MainActivityFragment.this.startActivity(intent);
         });
 
         return view;
