@@ -8,7 +8,6 @@ import androidx.room.Query;
 
 import com.example.android.trailfinder.db.entity.Trail;
 
-import java.util.Date;
 import java.util.List;
 
 @Dao
@@ -21,7 +20,7 @@ public interface TrailDao {
     LiveData<List<Trail>> getAllTrails();
 
     @Query("SELECT * FROM trail_table WHERE lastRefresh > :lastRefreshMax")
-    List<Trail> hasTrails(Date lastRefreshMax);
+    List<Trail> hasTrails(long lastRefreshMax);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<Trail> trails);

@@ -11,11 +11,6 @@ import com.example.android.trailfinder.db.api.TrailList;
 import com.example.android.trailfinder.db.dao.TrailDao;
 import com.example.android.trailfinder.db.entity.Trail;
 
-import java.io.IOException;
-import java.net.SocketTimeoutException;
-import java.net.UnknownHostException;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -26,8 +21,9 @@ public class TrailRepository {
 
     private static final String LOG_TAG = TrailRepository.class.getSimpleName();
 
-    private static final int REFRESH_TIME_IN_HOURS = 1;
-    long currentTime = System.currentTimeMillis();
+    private static final int SECONDS_IN_MILLIS = 1000;
+    private static final int MINUTES_IN_MILLIS = SECONDS_IN_MILLIS * 60;
+    private static final int HOURS_IN_MILLIS = MINUTES_IN_MILLIS * 60;
 
     private static TrailRepository trailRepository;
 
@@ -68,7 +64,7 @@ public class TrailRepository {
     private void refreshTrailData() {
         appExecutors.diskIO().execute(() -> {
 
-            boolean trailExists = (trailDao.hasTrails(getMaxRefreshTime(new Date())).size() != 0);
+            boolean trailExists = (trailDao.hasTrails(getMaxRefreshTime()).size() != 0);
             Log.d(LOG_TAG, "trailExists = " + trailExists);
 
             if(!trailExists) {
@@ -84,7 +80,7 @@ public class TrailRepository {
                         if(response.body() != null) {
                             List<Trail> trails = response.body().getTrails();
                             for (Trail trail : trails) {
-                                trail.setLastRefresh(new Date());
+                                trail.setLastRefresh(System.currentTimeMillis());
                             }
 
                             appExecutors.diskIO().execute(() -> {
@@ -104,12 +100,11 @@ public class TrailRepository {
         });
     }
 
-    private Date getMaxRefreshTime(Date currentDate) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(currentDate);
-        cal.add(Calendar.HOUR, -REFRESH_TIME_IN_HOURS);
-        return cal.getTime();
-
+    private long getMaxRefreshTime() {
+        // Subtracts one hour from current time.
+        // If last entered refresh time is still less,
+        // then refresh has not occurred in over an hour.
+        return System.currentTimeMillis() - HOURS_IN_MILLIS;
     }
 
 }

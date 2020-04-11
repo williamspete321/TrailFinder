@@ -6,8 +6,6 @@ import androidx.room.PrimaryKey;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Date;
-
 @Entity(tableName = "trail_table")
 public class Trail {
 
@@ -52,13 +50,13 @@ public class Trail {
     @SerializedName("latitude")
     private double latitude;
 
-    private Date lastRefresh;
-
+    private long lastRefresh;
 
     public Trail(int id, String name, String summary, String difficulty,
                  String location, String image, double length, int ascent,
                  int descent, int high, int low, double longitude, double latitude,
-                 Date lastRefresh) {
+                 long lastRefresh) {
+
         this.id = id;
         this.name = name;
         this.summary = summary;
@@ -179,11 +177,11 @@ public class Trail {
         this.latitude = latitude;
     }
 
-    public Date getLastRefresh() {
+    public long getLastRefresh() {
         return lastRefresh;
     }
 
-    public void setLastRefresh(Date date) {
-        lastRefresh = date;
+    public void setLastRefresh(long time) {
+        lastRefresh = time;
     }
 }
