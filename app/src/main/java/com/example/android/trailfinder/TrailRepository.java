@@ -1,5 +1,6 @@
 package com.example.android.trailfinder;
 
+import android.content.res.Resources;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
@@ -11,6 +12,8 @@ import com.example.android.trailfinder.db.dao.TrailDao;
 import com.example.android.trailfinder.db.entity.Trail;
 
 import java.io.IOException;
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -24,6 +27,7 @@ public class TrailRepository {
     private static final String LOG_TAG = TrailRepository.class.getSimpleName();
 
     private static final int REFRESH_TIME_IN_HOURS = 1;
+    long currentTime = System.currentTimeMillis();
 
     private static TrailRepository trailRepository;
 
@@ -92,12 +96,7 @@ public class TrailRepository {
 
                     @Override
                     public void onFailure(Call<TrailList> call, Throwable t) {
-                        if(t instanceof IOException) {
-                            Log.d(LOG_TAG, "Network connection failed.");
-                        } else {
-                            Log.d(LOG_TAG, "Data conversion failed.");
-
-                        }
+                        Log.d(LOG_TAG, t.toString());
                     }
                 });
             }
@@ -110,6 +109,7 @@ public class TrailRepository {
         cal.setTime(currentDate);
         cal.add(Calendar.HOUR, -REFRESH_TIME_IN_HOURS);
         return cal.getTime();
+
     }
 
 }

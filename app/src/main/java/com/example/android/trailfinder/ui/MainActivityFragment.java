@@ -20,7 +20,6 @@ public class MainActivityFragment extends Fragment {
     private FragmentMainActivityBinding binding;
 
     public MainActivityFragment() {
-        // Required empty public constructor
     }
 
     public static MainActivityFragment newInstance() {

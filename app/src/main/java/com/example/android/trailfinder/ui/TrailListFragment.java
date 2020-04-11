@@ -28,14 +28,12 @@ public class TrailListFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private TrailListAdapter adapter;
-    private LinearLayoutManager linearLayoutManager;
     private TrailListViewModel viewModel;
     private TrailListViewModelFactory factory;
 
     private FragmentTrailListBinding binding;
 
     public TrailListFragment() {
-        // Required empty public constructor
     }
 
     public static TrailListFragment newInstance() {
@@ -61,10 +59,6 @@ public class TrailListFragment extends Fragment {
 
     private void setupUI() {
         recyclerView = binding.trailListRecyclerview;
-        linearLayoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setHasFixedSize(true);
-
         adapter = new TrailListAdapter(getActivity());
         recyclerView.setAdapter(adapter);
     }
