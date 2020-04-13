@@ -10,10 +10,11 @@ import androidx.room.RoomDatabase;
 import com.example.android.trailfinder.db.dao.TrailDao;
 import com.example.android.trailfinder.db.entity.Trail;
 
+import timber.log.Timber;
+
 @Database(entities = {Trail.class}, version = 2)
 public abstract class AppDatabase extends RoomDatabase {
 
-    private static final String LOG_TAG = AppDatabase.class.getSimpleName();
     private static final String DATABASE_NAME = "trails";
 
     private static AppDatabase appDatabase;
@@ -27,10 +28,10 @@ public abstract class AppDatabase extends RoomDatabase {
                         context.getApplicationContext(), AppDatabase.class, DATABASE_NAME)
                         .fallbackToDestructiveMigration()
                         .build();
-                Log.d(LOG_TAG, "Database has been created");
+                Timber.d("Database has been created");
             }
         }
-        Log.d(LOG_TAG, "Instance of database has been called");
+        Timber.d("Instance of database has been called");
         return appDatabase;
     }
 

@@ -59,9 +59,11 @@ dependencies {
     implementation "com.google.android.material:material:$rootProject.materialVersion"
 
     //Network components
-    //implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
     implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.gsonVersion"
+
+    // Logging
+    implementation 'com.jakewharton.timber:timber:4.7.1'
 
     // Testing
     androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"

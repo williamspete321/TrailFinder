@@ -1,6 +1,5 @@
 package com.example.android.trailfinder;
 
-import android.content.res.Resources;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
@@ -16,10 +15,9 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import timber.log.Timber;
 
 public class TrailRepository {
-
-    private static final String LOG_TAG = TrailRepository.class.getSimpleName();
 
     private static final int SECONDS_IN_MILLIS = 1000;
     private static final int MINUTES_IN_MILLIS = SECONDS_IN_MILLIS * 60;
@@ -48,10 +46,10 @@ public class TrailRepository {
                         trailDao,
                         networkDataSource,
                         appExecutors);
-                Log.d(LOG_TAG, "Repository has been created");
+                Timber.d("Repository has been created");
 
             }
-            Log.d(LOG_TAG, "Instance of repository has been called");
+            Timber.d("Instance of repository has been called");
         }
         return trailRepository;
     }
@@ -65,7 +63,7 @@ public class TrailRepository {
         appExecutors.diskIO().execute(() -> {
 
             boolean trailExists = (trailDao.hasTrails(getMaxRefreshTime()).size() != 0);
-            Log.d(LOG_TAG, "trailExists = " + trailExists);
+            Timber.d("trailExists = %s", trailExists);
 
             if(!trailExists) {
 
@@ -85,14 +83,14 @@ public class TrailRepository {
 
                             appExecutors.diskIO().execute(() -> {
                                 trailDao.insertAll(trails);
-                                Log.d(LOG_TAG, "New data inserted.");
+                                Timber.d("New data inserted.");
                             });
                         }
                     }
 
                     @Override
                     public void onFailure(Call<TrailList> call, Throwable t) {
-                        Log.d(LOG_TAG, t.toString());
+                        Timber.d(t.toString());
                     }
                 });
             }

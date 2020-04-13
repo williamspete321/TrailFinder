@@ -19,12 +19,13 @@ import com.example.android.trailfinder.utilities.InjectorUtils;
 import com.example.android.trailfinder.viewmodel.TrailListViewModel;
 import com.example.android.trailfinder.viewmodel.TrailListViewModelFactory;
 
+import timber.log.Timber;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class TrailListFragment extends Fragment {
-    private static final String LOG_TAG = TrailListFragment.class.getSimpleName();
 
     private RecyclerView recyclerView;
     private TrailListAdapter adapter;
@@ -70,7 +71,7 @@ public class TrailListFragment extends Fragment {
         viewModel = new ViewModelProvider(this, factory).get(TrailListViewModel.class);
 
         viewModel.getAllTrails().observe(getViewLifecycleOwner(), trails -> {
-            Log.d(LOG_TAG, "Updating list of trails from LiveData in ViewModel");
+            Timber.d("Updating list of trails from LiveData in ViewModel");
             adapter.setData(trails);
         });
     }
