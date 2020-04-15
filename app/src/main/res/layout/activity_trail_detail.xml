@@ -5,10 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.TrailListActivity">
+    tools:context=".ui.TrailDetailActivity">
 
     <FrameLayout
-        android:id="@+id/fragment_list_container"
+        android:id="@+id/fragment_detail_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorIconLight"

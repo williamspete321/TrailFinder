@@ -16,11 +16,14 @@ public interface TrailDao {
     @Query("SELECT * FROM trail_table WHERE id = :id")
     LiveData<Trail> getTrailById(int id);
 
-    @Query("SELECT * FROM trail_table ORDER BY id ASC")
-    LiveData<List<Trail>> getAllTrails();
+    @Query("SELECT * FROM trail_table WHERE lastRefresh > :lastRefreshMax ORDER BY id ASC")
+    LiveData<List<Trail>> getAllTrails(long lastRefreshMax);
 
     @Query("SELECT * FROM trail_table WHERE lastRefresh > :lastRefreshMax")
     List<Trail> hasTrails(long lastRefreshMax);
+
+    @Query("SELECT * FROM trail_table WHERE lastRefresh > :lastRefreshMax ORDER BY RANDOM() LIMIT 1")
+    LiveData<Trail> getRandomTrail(long lastRefreshMax);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<Trail> trails);

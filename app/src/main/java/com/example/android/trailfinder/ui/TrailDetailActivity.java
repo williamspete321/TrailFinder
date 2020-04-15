@@ -8,21 +8,25 @@ import android.os.Bundle;
 
 import com.example.android.trailfinder.R;
 
-public class MainActivity extends AppCompatActivity {
+public class TrailDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_trail_detail);
 
-        if (savedInstanceState == null) {
+        if(savedInstanceState == null) {
 
-            MainActivityFragment mainActivityFragment = MainActivityFragment.newInstance();
+            int trailId = 0;
+
+            if(getIntent().hasExtra(TrailDetailFragment.ID)) {
+               trailId = getIntent().getIntExtra(TrailDetailFragment.ID, 0);
+            }
+
+            TrailDetailFragment trailDetailFragment = TrailDetailFragment.newInstance(trailId);
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.add(R.id.fragment_main_container, mainActivityFragment).commit();
-
+            fragmentTransaction.add(R.id.fragment_detail_container, trailDetailFragment).commit();
         }
-
     }
 }

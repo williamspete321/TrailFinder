@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,33 +17,43 @@ public class TrailListAdapter extends RecyclerView.Adapter<TrailListAdapter.Trai
 
     public static class TrailViewHolder extends RecyclerView.ViewHolder {
 
-        private CardTrailBinding binding;
+        private final CardTrailBinding binding;
 
-        private TrailViewHolder(CardTrailBinding binding) {
+        public TrailViewHolder(CardTrailBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
 
-        public void bind(Trail trail) {
+        public void bind(Trail trail, OnItemClickListener listener) {
             binding.setTrail(trail);
             binding.executePendingBindings();
+            binding.getRoot().setOnClickListener(view -> {
+                if (listener != null) {
+                    listener.onItemClick(view, trail);
+                }
+            });
         }
+
     }
 
     private final LayoutInflater inflater;
     private List<Trail> allTrails;
 
+    private OnItemClickListener listener;
+
     public TrailListAdapter(Context context) {
         inflater = LayoutInflater.from(context);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 
     @NonNull
     @Override
     public TrailViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        CardTrailBinding itemBinding
+        final CardTrailBinding itemBinding
                 = CardTrailBinding.inflate(inflater, parent, false);
-
         return new TrailViewHolder(itemBinding);
     }
 
@@ -52,7 +61,7 @@ public class TrailListAdapter extends RecyclerView.Adapter<TrailListAdapter.Trai
     public void onBindViewHolder(@NonNull TrailViewHolder holder, int position) {
         if(allTrails != null) {
             Trail trail = allTrails.get(position);
-            holder.bind(trail);
+            holder.bind(trail, listener);
         }
     }
 
@@ -65,6 +74,10 @@ public class TrailListAdapter extends RecyclerView.Adapter<TrailListAdapter.Trai
     public void setData(List<Trail> trails) {
         allTrails = trails;
         notifyDataSetChanged();
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(View view, Trail item);
     }
 
 }

@@ -5,13 +5,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import com.example.android.trailfinder.R;
 
 public class TrailListActivity extends AppCompatActivity {
-
-    private static final String TAG = TrailListActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

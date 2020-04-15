@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.android.trailfinder.R;
 import com.example.android.trailfinder.databinding.FragmentMainActivityBinding;
 
 /**
@@ -33,9 +32,14 @@ public class MainActivityFragment extends Fragment {
         binding = FragmentMainActivityBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
+        binding.selectRandomTrailButton.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), TrailDetailActivity.class);
+            startActivity(intent);
+        });
+
         binding.selectTrailListButton.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivityFragment.this.getActivity(), TrailListActivity.class);
-            MainActivityFragment.this.startActivity(intent);
+            Intent intent = new Intent(getActivity(), TrailListActivity.class);
+            startActivity(intent);
         });
 
         return view;
