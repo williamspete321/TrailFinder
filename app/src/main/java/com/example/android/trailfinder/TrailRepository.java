@@ -3,6 +3,9 @@ package com.example.android.trailfinder;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 
 import com.example.android.trailfinder.db.api.NetworkDataSource;
 import com.example.android.trailfinder.db.api.TrailDummyData;
@@ -29,12 +32,18 @@ public class TrailRepository {
     private final NetworkDataSource networkDataSource;
     private final AppExecutors appExecutors;
 
+    private final MediatorLiveData<List<Trail>> allTrails;
+    private final MediatorLiveData<Trail> randomTrail;
+
     private TrailRepository(final TrailDao trailDao,
                             final NetworkDataSource networkDataSource,
                             final AppExecutors appExecutors) {
         this.trailDao = trailDao;
         this.networkDataSource = networkDataSource;
         this.appExecutors = appExecutors;
+
+        allTrails = new MediatorLiveData<>();
+        randomTrail = new MediatorLiveData<>();
     }
 
     public static TrailRepository getInstance(final TrailDao trailDao,
@@ -54,37 +63,49 @@ public class TrailRepository {
         return trailRepository;
     }
 
+    public LiveData<Trail> getRandomTrail() {
+        final LiveData<Trail> currentRandomTrail = trailDao.getRandomTrail(getMaxRefreshTime());
+        randomTrail.setValue(null);
+
+        randomTrail.addSource(currentRandomTrail, trail -> {
+            if (trail == null) {
+                loadTrailsFromNetwork();
+            } else {
+                randomTrail.removeSource(currentRandomTrail);
+                randomTrail.postValue(trail);
+            }
+        });
+        return randomTrail;
+    }
+
     public LiveData<Trail> getTrailById(Integer id) {
         return trailDao.getTrailById(id);
     }
 
-    public LiveData<Trail> getRandomTrail() {
-        refreshTrailData();
-        return trailDao.getRandomTrail(getMaxRefreshTime());
-    }
-
     public LiveData<List<Trail>> getAllTrails() {
-        refreshTrailData();
-        return trailDao.getAllTrails(getMaxRefreshTime());
+        final LiveData<List<Trail>> currentTrails = trailDao.getAllTrails(getMaxRefreshTime());
+        allTrails.setValue(null);
+
+        allTrails.addSource(currentTrails, trailList -> {
+            if (trailList == null || trailList.isEmpty()) {
+                loadTrailsFromNetwork();
+            } else {
+                allTrails.removeSource(currentTrails);
+                allTrails.postValue(trailList);
+            }
+        });
+        return allTrails;
     }
 
-    private void refreshTrailData() {
-        Timber.d("refreshTrailData has been called");
-        appExecutors.diskIO().execute(() -> {
+    private void loadTrailsFromNetwork() {
+        Timber.d("inside loadTrailsFromNetwork");
 
-            boolean trailExists = (trailDao.hasTrails(getMaxRefreshTime()).size() != 0);
-            Timber.d("trailExists = %s", trailExists);
-
-            if(!trailExists) {
-                // Delete the old trails
-                trailDao.deleteAllTrails();
-
-                networkDataSource.getAllCurrentTrails(
-                        TrailDummyData.LAT_ATL,
-                        TrailDummyData.LON_ATL,
-                        TrailDummyData.MAX_DISTANCE,
-                        TrailDummyData.KEY).enqueue(new Callback<TrailList>() {
-
+        networkDataSource.getAllCurrentTrails(
+                TrailDummyData.LAT_ATL,
+                TrailDummyData.LON_ATL,
+                TrailDummyData.MAX_DISTANCE,
+                TrailDummyData.KEY)
+                .enqueue(new Callback<TrailList>() {
                     @Override
                     public void onResponse(Call<TrailList> call, Response<TrailList> response) {
                         if(response.body() != null) {
@@ -92,8 +113,8 @@ public class TrailRepository {
                             for (Trail trail : trails) {
                                 trail.setLastRefresh(System.currentTimeMillis());
                             }
-
                             appExecutors.diskIO().execute(() -> {
+                                trailDao.deleteAllTrails();
                                 trailDao.insertAll(trails);
                                 Timber.d("New data inserted.");
                             });
@@ -102,22 +123,15 @@ public class TrailRepository {
 
                     @Override
                     public void onFailure(Call<TrailList> call, Throwable t) {
-                        Timber.d(t.toString());
+
                     }
                 });
-            }
-
-        });
     }
 
     private long getMaxRefreshTime() {
-        // Subtracts one hour from current time.
-        // If last entered refresh time is still less,
-        // then refresh has not occurred in over an hour.
-        return System.currentTimeMillis() - HOURS_IN_MILLIS;
-
+//        return System.currentTimeMillis() - HOURS_IN_MILLIS;
         // For testing
-//        return System.currentTimeMillis();
+        return System.currentTimeMillis();
     }
 
 }

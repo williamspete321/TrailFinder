@@ -13,18 +13,11 @@ import java.util.List;
 public class TrailListViewModel extends ViewModel {
 
     private final TrailRepository trailRepository;
-    private final MediatorLiveData<List<Trail>> allTrails;
+    private final LiveData<List<Trail>> allTrails;
 
     public TrailListViewModel(TrailRepository trailRepository) {
         this.trailRepository = trailRepository;
-
-        allTrails = new MediatorLiveData<>();
-        allTrails.setValue(null);
-
-        allTrails.addSource(trailRepository.getAllTrails(), trailList -> {
-            if (trailList != null) allTrails.postValue(trailList);
-        });
-
+        allTrails = trailRepository.getAllTrails();
     }
 
     public LiveData<List<Trail>> getAllTrails() {

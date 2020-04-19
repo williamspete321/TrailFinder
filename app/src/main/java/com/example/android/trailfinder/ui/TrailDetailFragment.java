@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
@@ -63,28 +64,15 @@ public class TrailDetailFragment extends Fragment {
 
     private void setupViewModel() {
         factory = InjectorUtils.provideTrailDetailViewModelFactory(
-                getActivity().getApplicationContext());
+                getActivity().getApplicationContext(), trailId);
 
         viewModel = new ViewModelProvider(this, factory).get(TrailDetailViewModel.class);
 
-        if(trailId == 0) {
-            Timber.d("setupViewModel method: inside if statement");
-
-            viewModel.getRandomTrail().observe(getViewLifecycleOwner(), trail -> {
-                currentTrail = trail;
-                binding.setTrail(currentTrail);
-                Timber.d("Updating trail from LiveData in ViewModel");
-            });
-
-        } else {
-            Timber.d("setupViewModel method: inside else statement");
-
-            viewModel.getTrailById(trailId).observe(getViewLifecycleOwner(), trail -> {
-                currentTrail = trail;
-                binding.setTrail(currentTrail);
-                Timber.d("Updating current trail in focus");
-            });
-
-        }
+        viewModel.getTrail(trailId).observe(getViewLifecycleOwner(), trail -> {
+            currentTrail = trail;
+            binding.setTrail(currentTrail);
+            Timber.d("Updating trail from LiveData in ViewModel");
+        });
     }
+
 }

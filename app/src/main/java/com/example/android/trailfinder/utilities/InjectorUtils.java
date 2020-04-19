@@ -24,9 +24,9 @@ public class InjectorUtils {
     }
 
     public static TrailDetailViewModelFactory provideTrailDetailViewModelFactory(
-            Context context) {
+            Context context, int trailId) {
         TrailRepository trailRepository = provideRepository(context.getApplicationContext());
-        return new TrailDetailViewModelFactory(trailRepository);
+        return new TrailDetailViewModelFactory(trailRepository, trailId);
     }
 
 }
