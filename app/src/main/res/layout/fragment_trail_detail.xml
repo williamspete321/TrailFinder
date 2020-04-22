@@ -15,12 +15,26 @@
         android:layout_height="match_parent"
         tools:context=".ui.TrailDetailFragment">
 
+        <!-- it works with data binding adapter, picasso! -->
+        <!--
+        <ImageView
+            android:id="@+id/trail_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:imageUrl="@{trail.image}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/trail_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+            -->
+
         <TextView
             android:id="@+id/trail_title"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@{trail.name}"
+            tools:text="@string/sample_trail_title"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

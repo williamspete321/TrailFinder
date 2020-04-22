@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -17,29 +18,17 @@
 
         <Button
             android:id="@+id/select_random_trail_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_corners_button"
             android:drawableTop="@drawable/hiker"
-            android:elevation="@dimen/button_elevation"
-            android:padding="@dimen/button_padding"
             android:text="@string/find_me_a_trail"
-            android:textColor="@color/colorIcon"
-            android:textSize="@dimen/button_text_size"
+            style="@style/trail_finder_button_style"
             tools:text="@string/find_me_a_trail" />
 
         <Button
             android:id="@+id/select_trail_list_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded_corners_button"
-            android:drawableTop="@drawable/map"
-            android:elevation="@dimen/button_elevation"
-            android:padding="@dimen/button_padding"
             android:layout_marginTop="@dimen/button_margin_vertical"
+            android:drawableTop="@drawable/map"
             android:text="@string/let_me_choose"
-            android:textColor="@color/colorIcon"
-            android:textSize="@dimen/button_text_size"
+            style="@style/trail_finder_button_style"
             tools:text="@string/let_me_choose" />
 
     </LinearLayout>

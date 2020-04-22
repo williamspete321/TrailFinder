@@ -17,7 +17,7 @@
         android:layout_margin="@dimen/cardview_margin_vertical"
         card_view:cardCornerRadius="@dimen/cardview_corner_radius"
         card_view:cardElevation="@dimen/cardview_default_elevation"
-        card_view:cardBackgroundColor="@color/colorPrimary">
+        card_view:cardBackgroundColor="?attr/themePrimary">
 
         <TextView
             android:id="@+id/trail_name"
@@ -28,7 +28,7 @@
             android:layout_margin="@dimen/big_margin"
             android:text="@{trail.name}"
             android:textStyle="bold"
-            android:textColor="@color/colorIcon"
+            android:textColor="?attr/themeButtonTextColor"
             android:textSize="@dimen/cardview_text_size"
             android:textAlignment="center"/>
 

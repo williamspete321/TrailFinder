@@ -1,10 +1,15 @@
 package com.example.android.trailfinder.db.entity;
 
+import android.widget.ImageView;
+
+import androidx.databinding.BindingAdapter;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.example.android.trailfinder.R;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.squareup.picasso.Picasso;
 
 @Entity(tableName = "trail_table")
 public class Trail {
@@ -71,6 +76,15 @@ public class Trail {
         this.longitude = longitude;
         this.latitude = latitude;
         this.lastRefresh = lastRefresh;
+    }
+
+    @BindingAdapter({"imageUrl"})
+    public static void loadImage(ImageView view, String url) {
+        Picasso.get()
+                .load(url)
+                .placeholder(R.drawable.image_placeholder_white_48dp)
+                .error(R.drawable.error_loading_image_white_48dp)
+                .into(view);
     }
 
     public int getId() {
@@ -184,4 +198,5 @@ public class Trail {
     public void setLastRefresh(long time) {
         lastRefresh = time;
     }
+
 }

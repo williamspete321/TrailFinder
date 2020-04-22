@@ -129,9 +129,9 @@ public class TrailRepository {
     }
 
     private long getMaxRefreshTime() {
-//        return System.currentTimeMillis() - HOURS_IN_MILLIS;
+        return System.currentTimeMillis() - HOURS_IN_MILLIS;
         // For testing
-        return System.currentTimeMillis();
+//        return System.currentTimeMillis();
     }
 
 }
