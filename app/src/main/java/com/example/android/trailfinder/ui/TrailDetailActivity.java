@@ -17,7 +17,6 @@ public class TrailDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ActivityTrailDetailBinding activityTrailDetailBinding
                 = DataBindingUtil.setContentView(this, R.layout.activity_trail_detail);
-        setSupportActionBar(activityTrailDetailBinding.activityDetailToolbar);
 
         if(savedInstanceState == null) {
 
@@ -33,4 +32,11 @@ public class TrailDetailActivity extends AppCompatActivity {
             fragmentTransaction.add(R.id.fragment_detail_container, trailDetailFragment).commit();
         }
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
 }

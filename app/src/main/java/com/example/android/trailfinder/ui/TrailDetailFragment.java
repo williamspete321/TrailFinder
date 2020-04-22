@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -48,6 +50,10 @@ public class TrailDetailFragment extends Fragment {
 
         binding = FragmentTrailDetailBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
+
+        ((AppCompatActivity) getActivity()).setSupportActionBar(binding.fragmentDetailToolbar);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         if(getArguments().containsKey(ID)) {
             trailId = getArguments().getInt(ID);

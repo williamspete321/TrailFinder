@@ -5,6 +5,8 @@
     <dimen name="app_bar_height">270dp</dimen>
     <dimen name="collapsing_toolbar_image_height">300dp</dimen>
     <dimen name="toolbar_elevation">4dp</dimen>
+    <dimen name="collapsing_toolbar_expanded_title_margin_start">24dp</dimen>
+    <dimen name="collapsing_toolbar_expanded_title_margin_bottom">24dp</dimen>
 
     <dimen name="button_text_size">16sp</dimen>
     <dimen name="button_padding">16dp</dimen>

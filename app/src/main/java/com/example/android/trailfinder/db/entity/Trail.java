@@ -82,8 +82,9 @@ public class Trail {
     public static void loadImage(ImageView view, String url) {
         Picasso.get()
                 .load(url)
-                .placeholder(R.drawable.image_placeholder_white_48dp)
-                .error(R.drawable.error_loading_image_white_48dp)
+                .fit()
+                .placeholder(R.drawable.image_loading_white_24dp)
+                .error(R.drawable.image_error_white_24dp)
                 .into(view);
     }
 

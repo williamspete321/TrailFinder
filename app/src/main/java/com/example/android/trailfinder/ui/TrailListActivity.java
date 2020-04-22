@@ -18,6 +18,9 @@ public class TrailListActivity extends AppCompatActivity {
         ActivityTrailListBinding activityTrailListBinding =
                 DataBindingUtil.setContentView(this, R.layout.activity_trail_list);
         setSupportActionBar(activityTrailListBinding.activityListToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
 
         if (savedInstanceState == null) {
 
@@ -29,5 +32,10 @@ public class TrailListActivity extends AppCompatActivity {
 
         }
 
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }
