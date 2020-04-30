@@ -80,12 +80,20 @@ public class Trail {
 
     @BindingAdapter({"imageUrl"})
     public static void loadImage(ImageView view, String url) {
-        Picasso.get()
-                .load(url)
-                .fit()
-                .placeholder(R.drawable.image_loading_white_24dp)
-                .error(R.drawable.image_error_white_24dp)
-                .into(view);
+        if(url == null || url.isEmpty()) {
+            Picasso.get()
+                    .load(R.drawable.image_error_white_24dp)
+                    .fit()
+                    .error(R.drawable.image_error_white_24dp)
+                    .into(view);
+        } else {
+            Picasso.get()
+                    .load(url)
+                    .fit()
+                    .placeholder(R.drawable.image_loading_white_24dp)
+                    .error(R.drawable.image_error_white_24dp)
+                    .into(view);
+        }
     }
 
     public int getId() {

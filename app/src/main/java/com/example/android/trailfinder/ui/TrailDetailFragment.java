@@ -1,5 +1,6 @@
 package com.example.android.trailfinder.ui;
 
+import android.location.Location;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -27,7 +28,9 @@ public class TrailDetailFragment extends Fragment {
     private FragmentTrailDetailBinding binding;
 
     public static final String ID = "trail-id";
+
     private int trailId;
+    private Location location;
 
     private TrailDetailViewModel viewModel;
     private TrailDetailViewModelFactory factory;
@@ -36,10 +39,8 @@ public class TrailDetailFragment extends Fragment {
     public TrailDetailFragment() {
     }
 
-    public static TrailDetailFragment newInstance(int trailId) {
+    public static TrailDetailFragment newInstance(Bundle arguments) {
         TrailDetailFragment fragment = new TrailDetailFragment();
-        Bundle arguments = new Bundle();
-        arguments.putInt(ID, trailId);
         fragment.setArguments(arguments);
         return fragment;
     }
@@ -55,8 +56,11 @@ public class TrailDetailFragment extends Fragment {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        if(getArguments().containsKey(ID)) {
+        if(getArguments() != null) {
             trailId = getArguments().getInt(ID);
+            location = new Location("");
+            location.setLatitude(getArguments().getDouble(MainActivityFragment.LOCATION_LAT));
+            location.setLongitude(getArguments().getDouble(MainActivityFragment.LOCATION_LON));
         }
 
         return view;
@@ -70,7 +74,7 @@ public class TrailDetailFragment extends Fragment {
 
     private void setupViewModel() {
         factory = InjectorUtils.provideTrailDetailViewModelFactory(
-                getActivity().getApplicationContext(), trailId);
+                getActivity().getApplicationContext(), trailId, location);
 
         viewModel = new ViewModelProvider(this, factory).get(TrailDetailViewModel.class);
 

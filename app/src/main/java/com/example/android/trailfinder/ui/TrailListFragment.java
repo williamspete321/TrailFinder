@@ -1,6 +1,7 @@
 package com.example.android.trailfinder.ui;
 
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -26,6 +27,8 @@ public class TrailListFragment extends Fragment
 
     private FragmentTrailListBinding binding;
 
+    private Location location;
+
     private RecyclerView recyclerView;
     private TrailListAdapter adapter;
     private TrailListViewModel viewModel;
@@ -44,6 +47,12 @@ public class TrailListFragment extends Fragment
 
         binding = FragmentTrailListBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
+
+        if(getArguments() != null) {
+            location = new Location("");
+            location.setLatitude(getArguments().getDouble(MainActivityFragment.LOCATION_LAT));
+            location.setLongitude(getArguments().getDouble(MainActivityFragment.LOCATION_LON));
+        }
 
         setupUI();
         return view;
@@ -64,7 +73,7 @@ public class TrailListFragment extends Fragment
 
     private void setupViewModel() {
         factory = InjectorUtils.provideTrailListViewModelFactory(
-                getActivity().getApplicationContext());
+                getActivity().getApplicationContext(), location);
 
         viewModel = new ViewModelProvider(this, factory).get(TrailListViewModel.class);
 

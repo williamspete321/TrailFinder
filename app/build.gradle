@@ -60,6 +60,9 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.gsonVersion"
 
+    // Google Play Services
+    implementation "com.google.android.gms:play-services-location:$rootProject.locationVersion"
+
     // Testing
     implementation "com.jakewharton.timber:timber:$rootProject.timberVersion"
     androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"
