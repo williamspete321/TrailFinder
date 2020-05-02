@@ -1,4 +1,4 @@
-package com.example.android.trailfinder.ui;
+package com.example.android.trailfinder.ui.alltrails;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -10,7 +10,7 @@ import android.os.Bundle;
 import com.example.android.trailfinder.R;
 import com.example.android.trailfinder.databinding.ActivityTrailListBinding;
 
-public class TrailListActivity extends AppCompatActivity {
+public class AllTrailsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +24,10 @@ public class TrailListActivity extends AppCompatActivity {
 
         if (savedInstanceState == null) {
 
-            TrailListFragment trailListFragment = TrailListFragment.newInstance();
+            AllTrailsFragment allTrailsFragment = AllTrailsFragment.newInstance();
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.add(R.id.fragment_list_container, trailListFragment)
+            fragmentTransaction.add(R.id.fragment_list_container, allTrailsFragment)
                     .commit();
 
         }

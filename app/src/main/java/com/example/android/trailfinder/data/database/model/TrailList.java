@@ -1,6 +1,5 @@
-package com.example.android.trailfinder.db.api;
+package com.example.android.trailfinder.data.database.model;
 
-import com.example.android.trailfinder.db.entity.Trail;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;

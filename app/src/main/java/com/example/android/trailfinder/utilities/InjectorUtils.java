@@ -3,42 +3,34 @@ package com.example.android.trailfinder.utilities;
 import android.content.Context;
 import android.location.Location;
 
-import com.example.android.trailfinder.AppExecutors;
-import com.example.android.trailfinder.TrailRepository;
-import com.example.android.trailfinder.db.AppDatabase;
-import com.example.android.trailfinder.db.api.NetworkDataSource;
-import com.example.android.trailfinder.viewmodel.TrailDetailViewModelFactory;
-import com.example.android.trailfinder.viewmodel.TrailListViewModelFactory;
+import com.example.android.trailfinder.data.executor.AppExecutors;
+import com.example.android.trailfinder.data.repository.TrailRepository;
+import com.example.android.trailfinder.data.database.AppDatabase;
+import com.example.android.trailfinder.data.network.NetworkDataSource;
+import com.example.android.trailfinder.ui.traildetail.TrailDetailViewModelFactory;
+import com.example.android.trailfinder.ui.alltrails.AllTrailsViewModelFactory;
 
 public class InjectorUtils {
 
-    public static TrailRepository provideRepository(Context context, Location location) {
+    public static TrailRepository provideRepository(Context context) {
 
         AppDatabase appDatabase = AppDatabase.getInstance(context.getApplicationContext());
         AppExecutors appExecutors = AppExecutors.getInstance();
-        NetworkDataSource networkDataSource = NetworkDataSource.getInstance(appExecutors);
-        LocationUtils locationUtils = LocationUtils.getInstance(location);
 
-        return TrailRepository.getInstance(appDatabase.trailDao(),
-                networkDataSource,
-                appExecutors,
-                locationUtils);
+        return TrailRepository.getInstance(appDatabase.trailDao(), appExecutors);
     }
 
-    public static TrailListViewModelFactory provideTrailListViewModelFactory(Context context,
-                                                                             Location location) {
+    public static AllTrailsViewModelFactory provideTrailListViewModelFactory(Context context) {
 
-        TrailRepository trailRepository = provideRepository(context.getApplicationContext(),
-                location);
+        TrailRepository trailRepository = provideRepository(context.getApplicationContext());
 
-        return new TrailListViewModelFactory(trailRepository);
+        return new AllTrailsViewModelFactory(trailRepository);
     }
 
-    public static TrailDetailViewModelFactory provideTrailDetailViewModelFactory(
-            Context context, int trailId, Location location) {
+    public static TrailDetailViewModelFactory provideTrailDetailViewModelFactory(Context context,
+                                                                                 int trailId) {
 
-        TrailRepository trailRepository = provideRepository(context.getApplicationContext(),
-                location);
+        TrailRepository trailRepository = provideRepository(context.getApplicationContext());
 
         return new TrailDetailViewModelFactory(trailRepository, trailId);
     }

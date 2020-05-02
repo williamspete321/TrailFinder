@@ -1,8 +1,9 @@
-package com.example.android.trailfinder.db.entity;
+package com.example.android.trailfinder.data.database.model;
 
 import android.widget.ImageView;
 
 import androidx.databinding.BindingAdapter;
+import androidx.lifecycle.LiveData;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 

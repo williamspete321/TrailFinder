@@ -1,6 +1,7 @@
-package com.example.android.trailfinder.db.api;
+package com.example.android.trailfinder.data.network;
 
-import com.example.android.trailfinder.AppExecutors;
+import com.example.android.trailfinder.data.executor.AppExecutors;
+import com.example.android.trailfinder.data.database.model.TrailList;
 
 
 import retrofit2.Call;
@@ -28,9 +29,9 @@ public class NetworkDataSource {
     }
 
     public static Call<TrailList> getAllCurrentTrails(double lat,
-                                                        double lon,
-                                                        int maxDistance,
-                                                        String key) {
+                                                      double lon,
+                                                      int maxDistance,
+                                                      String key) {
 
         return dataService.getAllTrails(lat, lon, maxDistance, key);
     }

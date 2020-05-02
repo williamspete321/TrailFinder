@@ -7,7 +7,7 @@
     <data>
         <variable
             name="trail"
-            type="com.example.android.trailfinder.db.entity.Trail" />
+            type="com.example.android.trailfinder.data.database.model.Trail" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -26,7 +26,7 @@
             android:layout_gravity="center"
             tools:text="@string/sample_trail_title"
             android:layout_margin="@dimen/big_margin"
-            android:text="@{trail.name}"
+            android:text="@{trail.image}"
             android:textStyle="bold"
             android:textColor="?attr/themeButtonTextColor"
             android:textSize="@dimen/cardview_text_size"

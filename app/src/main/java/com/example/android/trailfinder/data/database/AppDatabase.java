@@ -1,18 +1,16 @@
-package com.example.android.trailfinder.db;
+package com.example.android.trailfinder.data.database;
 
 import android.content.Context;
-import android.util.Log;
 
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.example.android.trailfinder.db.dao.TrailDao;
-import com.example.android.trailfinder.db.entity.Trail;
+import com.example.android.trailfinder.data.database.model.Trail;
 
 import timber.log.Timber;
 
-@Database(entities = {Trail.class}, version = 4)
+@Database(entities = {Trail.class}, version = 5)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String DATABASE_NAME = "trails";

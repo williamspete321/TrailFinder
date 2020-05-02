@@ -1,4 +1,4 @@
-package com.example.android.trailfinder.db.api;
+package com.example.android.trailfinder.data.network;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

@@ -1,4 +1,4 @@
-package com.example.android.trailfinder.ui;
+package com.example.android.trailfinder.ui.alltrails;
 
 import android.content.Intent;
 import android.location.Location;
@@ -15,30 +15,31 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.android.trailfinder.databinding.FragmentTrailListBinding;
-import com.example.android.trailfinder.db.entity.Trail;
+import com.example.android.trailfinder.data.database.model.Trail;
+import com.example.android.trailfinder.ui.main.MainActivityFragment;
+import com.example.android.trailfinder.ui.traildetail.TrailDetailActivity;
+import com.example.android.trailfinder.ui.traildetail.TrailDetailFragment;
 import com.example.android.trailfinder.utilities.InjectorUtils;
-import com.example.android.trailfinder.viewmodel.TrailListViewModel;
-import com.example.android.trailfinder.viewmodel.TrailListViewModelFactory;
 
 import timber.log.Timber;
 
-public class TrailListFragment extends Fragment
-        implements TrailListAdapter.OnItemClickListener {
+public class AllTrailsFragment extends Fragment
+        implements AllTrailsAdapter.OnItemClickListener {
 
     private FragmentTrailListBinding binding;
 
     private Location location;
 
     private RecyclerView recyclerView;
-    private TrailListAdapter adapter;
-    private TrailListViewModel viewModel;
-    private TrailListViewModelFactory factory;
+    private AllTrailsAdapter adapter;
+    private AllTrailsViewModel viewModel;
+    private AllTrailsViewModelFactory factory;
 
-    public TrailListFragment() {
+    public AllTrailsFragment() {
     }
 
-    public static TrailListFragment newInstance() {
-        return new TrailListFragment();
+    public static AllTrailsFragment newInstance() {
+        return new AllTrailsFragment();
     }
 
     @Override
@@ -47,12 +48,6 @@ public class TrailListFragment extends Fragment
 
         binding = FragmentTrailListBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
-
-        if(getArguments() != null) {
-            location = new Location("");
-            location.setLatitude(getArguments().getDouble(MainActivityFragment.LOCATION_LAT));
-            location.setLongitude(getArguments().getDouble(MainActivityFragment.LOCATION_LON));
-        }
 
         setupUI();
         return view;
@@ -66,16 +61,16 @@ public class TrailListFragment extends Fragment
 
     private void setupUI() {
         recyclerView = binding.trailListRecyclerview;
-        adapter = new TrailListAdapter(getActivity());
+        adapter = new AllTrailsAdapter(getActivity());
         adapter.setOnItemClickListener(this);
         recyclerView.setAdapter(adapter);
     }
 
     private void setupViewModel() {
-        factory = InjectorUtils.provideTrailListViewModelFactory(
-                getActivity().getApplicationContext(), location);
+        factory = InjectorUtils.provideTrailListViewModelFactory(getActivity()
+                .getApplicationContext());
 
-        viewModel = new ViewModelProvider(this, factory).get(TrailListViewModel.class);
+        viewModel = new ViewModelProvider(this, factory).get(AllTrailsViewModel.class);
 
         viewModel.getAllTrails().observe(getViewLifecycleOwner(), trails -> {
             Timber.d("Updating list of trails from LiveData in ViewModel");

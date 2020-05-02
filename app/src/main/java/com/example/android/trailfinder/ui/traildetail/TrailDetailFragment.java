@@ -1,14 +1,12 @@
-package com.example.android.trailfinder.ui;
+package com.example.android.trailfinder.ui.traildetail;
 
 import android.location.Location;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
@@ -16,10 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.android.trailfinder.databinding.FragmentTrailDetailBinding;
-import com.example.android.trailfinder.db.entity.Trail;
+import com.example.android.trailfinder.data.database.model.Trail;
 import com.example.android.trailfinder.utilities.InjectorUtils;
-import com.example.android.trailfinder.viewmodel.TrailDetailViewModel;
-import com.example.android.trailfinder.viewmodel.TrailDetailViewModelFactory;
 
 import timber.log.Timber;
 
@@ -30,7 +26,6 @@ public class TrailDetailFragment extends Fragment {
     public static final String ID = "trail-id";
 
     private int trailId;
-    private Location location;
 
     private TrailDetailViewModel viewModel;
     private TrailDetailViewModelFactory factory;
@@ -58,9 +53,6 @@ public class TrailDetailFragment extends Fragment {
 
         if(getArguments() != null) {
             trailId = getArguments().getInt(ID);
-            location = new Location("");
-            location.setLatitude(getArguments().getDouble(MainActivityFragment.LOCATION_LAT));
-            location.setLongitude(getArguments().getDouble(MainActivityFragment.LOCATION_LON));
         }
 
         return view;
@@ -74,11 +66,11 @@ public class TrailDetailFragment extends Fragment {
 
     private void setupViewModel() {
         factory = InjectorUtils.provideTrailDetailViewModelFactory(
-                getActivity().getApplicationContext(), trailId, location);
+                getActivity().getApplicationContext(), trailId);
 
         viewModel = new ViewModelProvider(this, factory).get(TrailDetailViewModel.class);
 
-        viewModel.getTrail(trailId).observe(getViewLifecycleOwner(), trail -> {
+        viewModel.getTrail().observe(getViewLifecycleOwner(), trail -> {
             currentTrail = trail;
             binding.setTrail(currentTrail);
             Timber.d("Updating trail from LiveData in ViewModel");

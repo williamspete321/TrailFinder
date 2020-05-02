@@ -1,6 +1,8 @@
-package com.example.android.trailfinder;
+package com.example.android.trailfinder.application;
 
 import android.app.Application;
+
+import com.example.android.trailfinder.BuildConfig;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

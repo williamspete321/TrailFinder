@@ -1,4 +1,4 @@
-package com.example.android.trailfinder.db.api;
+package com.example.android.trailfinder.data;
 
 public class TrailDummyData {
 

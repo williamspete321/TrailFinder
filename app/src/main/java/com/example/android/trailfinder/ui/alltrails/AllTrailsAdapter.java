@@ -1,4 +1,4 @@
-package com.example.android.trailfinder.ui;
+package com.example.android.trailfinder.ui.alltrails;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,11 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android.trailfinder.databinding.CardTrailBinding;
-import com.example.android.trailfinder.db.entity.Trail;
+import com.example.android.trailfinder.data.database.model.Trail;
 
 import java.util.List;
 
-public class TrailListAdapter extends RecyclerView.Adapter<TrailListAdapter.TrailViewHolder> {
+public class AllTrailsAdapter extends RecyclerView.Adapter<AllTrailsAdapter.TrailViewHolder> {
 
     public static class TrailViewHolder extends RecyclerView.ViewHolder {
 
@@ -41,7 +41,7 @@ public class TrailListAdapter extends RecyclerView.Adapter<TrailListAdapter.Trai
 
     private OnItemClickListener listener;
 
-    public TrailListAdapter(Context context) {
+    public AllTrailsAdapter(Context context) {
         inflater = LayoutInflater.from(context);
     }
 

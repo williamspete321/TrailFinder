@@ -1,4 +1,4 @@
-package com.example.android.trailfinder.ui;
+package com.example.android.trailfinder.ui.traildetail;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -9,8 +9,7 @@ import android.os.Bundle;
 
 import com.example.android.trailfinder.R;
 import com.example.android.trailfinder.databinding.ActivityTrailDetailBinding;
-
-import timber.log.Timber;
+import com.example.android.trailfinder.ui.main.MainActivityFragment;
 
 public class TrailDetailActivity extends AppCompatActivity {
 
@@ -23,26 +22,13 @@ public class TrailDetailActivity extends AppCompatActivity {
         if(savedInstanceState == null) {
 
             int trailId = 0;
-            double locationLatitude = 0;
-            double locationLongitude = 0;
 
             if(getIntent().hasExtra(TrailDetailFragment.ID)) {
                 trailId = getIntent().getIntExtra(TrailDetailFragment.ID, 0);
             }
 
-            if(getIntent().hasExtra(MainActivityFragment.LOCATION_COORD)) {
-                Bundle extras = getIntent().getBundleExtra(MainActivityFragment.LOCATION_COORD);
-
-                locationLatitude = extras.getDouble(MainActivityFragment.LOCATION_LAT);
-                locationLongitude = extras.getDouble(MainActivityFragment.LOCATION_LON);
-
-            }
-
             Bundle arguments = new Bundle();
             arguments.putInt(TrailDetailFragment.ID, trailId);
-            arguments.putDouble(MainActivityFragment.LOCATION_LAT, locationLatitude);
-            arguments.putDouble(MainActivityFragment.LOCATION_LON, locationLongitude);
-
 
             TrailDetailFragment trailDetailFragment = TrailDetailFragment.newInstance(arguments);
             FragmentManager fragmentManager = getSupportFragmentManager();

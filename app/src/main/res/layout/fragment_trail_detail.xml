@@ -5,17 +5,16 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="trail"
-            type="com.example.android.trailfinder.db.entity.Trail" />
+            type="com.example.android.trailfinder.data.database.model.Trail" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context=".ui.TrailDetailFragment">
+        tools:context=".ui.traildetail.TrailDetailFragment">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar"
@@ -61,7 +60,7 @@
             android:layout_height="match_parent"
             android:background="?attr/themeContentBackground"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:context=".ui.TrailDetailActivity"
+            tools:context=".ui.traildetail.TrailDetailActivity"
             tools:showIn="@layout/activity_trail_detail">
 
             <TextView

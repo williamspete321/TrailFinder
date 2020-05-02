@@ -1,4 +1,6 @@
-package com.example.android.trailfinder.db.api;
+package com.example.android.trailfinder.data.network;
+
+import com.example.android.trailfinder.data.database.model.TrailList;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

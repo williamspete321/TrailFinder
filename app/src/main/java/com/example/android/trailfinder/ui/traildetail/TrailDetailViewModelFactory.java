@@ -1,10 +1,10 @@
-package com.example.android.trailfinder.viewmodel;
+package com.example.android.trailfinder.ui.traildetail;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.android.trailfinder.TrailRepository;
+import com.example.android.trailfinder.data.repository.TrailRepository;
 
 import timber.log.Timber;
 

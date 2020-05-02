@@ -1,9 +1,7 @@
-package com.example.android.trailfinder;
+package com.example.android.trailfinder.data.executor;
 
 import android.os.Handler;
 import android.os.Looper;
-
-import androidx.annotation.MainThread;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
