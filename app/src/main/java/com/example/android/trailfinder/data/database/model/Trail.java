@@ -3,7 +3,6 @@ package com.example.android.trailfinder.data.database.model;
 import android.widget.ImageView;
 
 import androidx.databinding.BindingAdapter;
-import androidx.lifecycle.LiveData;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -77,24 +76,6 @@ public class Trail {
         this.longitude = longitude;
         this.latitude = latitude;
         this.lastRefresh = lastRefresh;
-    }
-
-    @BindingAdapter({"imageUrl"})
-    public static void loadImage(ImageView view, String url) {
-        if(url == null || url.isEmpty()) {
-            Picasso.get()
-                    .load(R.drawable.image_error_white_24dp)
-                    .fit()
-                    .error(R.drawable.image_error_white_24dp)
-                    .into(view);
-        } else {
-            Picasso.get()
-                    .load(url)
-                    .fit()
-                    .placeholder(R.drawable.image_loading_white_24dp)
-                    .error(R.drawable.image_error_white_24dp)
-                    .into(view);
-        }
     }
 
     public int getId() {

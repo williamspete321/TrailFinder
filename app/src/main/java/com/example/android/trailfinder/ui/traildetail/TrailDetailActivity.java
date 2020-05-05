@@ -34,6 +34,7 @@ public class TrailDetailActivity extends AppCompatActivity {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.add(R.id.fragment_detail_container, trailDetailFragment).commit();
+
         }
     }
 

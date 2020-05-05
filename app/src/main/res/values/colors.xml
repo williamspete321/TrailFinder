@@ -5,5 +5,12 @@
     <color name="colorGreenLight">#96ed98</color>
     <color name="colorPinkDark">#BA64B6</color>
     <color name="colorBrown">#795548</color>
+    <color name="colorBrownDark">#4f3228</color>
     <color name="colorBrownLight">#A1887F</color>
+    <color name="colorBrownExtraLight">#ccb3a9</color>
+    <color name="colorGreenExtraLight">#E4F5E5</color>
+    <color name="colorYellow">#ccaa21</color>
+    <color name="colorRed">#d13411</color>
+    <color name="colorBlue">#2062fa</color>
+    <color name="colorPurple">#8e2bd9</color>
 </resources>

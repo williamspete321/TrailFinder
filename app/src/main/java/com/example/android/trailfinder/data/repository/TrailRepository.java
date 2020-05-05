@@ -22,7 +22,7 @@ import timber.log.Timber;
 
 public class TrailRepository {
 
-    private static final String API_KEY = "insert-key-here";
+    private static final String API_KEY = "YOUR_KEY_HERE";
     private static final int MAX_DISTANCE_TO_TRAIL = 25;
 
     private static final int SECONDS_IN_MILLIS = 1000;
@@ -110,9 +110,9 @@ public class TrailRepository {
     }
 
     private long getMaxRefreshTime() {
-        return System.currentTimeMillis() - HOURS_IN_MILLIS;
+//        return System.currentTimeMillis() - HOURS_IN_MILLIS;
         // For testing
-//        return System.currentTimeMillis();
+        return System.currentTimeMillis();
     }
 
 }

@@ -7,4 +7,7 @@
     <attr name="themeButtonIconColor" format="reference"/>
     <attr name="themeButtonTextColor" format="reference"/>
     <attr name="themeContentBackground" format="reference"/>
+    <attr name="themeContentBackgroundLight" format="reference"/>
+    <attr name="themeTextViewTextColorLight" format="reference"/>
+    <attr name="themeTextViewTextColorDark" format="reference"/>
 </resources>

@@ -62,6 +62,7 @@ dependencies {
 
     // Google Play Services
     implementation "com.google.android.gms:play-services-location:$rootProject.locationVersion"
+    implementation "com.google.android.gms:play-services-maps:$rootProject.mapsVersion"
 
     // Testing
     implementation "com.jakewharton.timber:timber:$rootProject.timberVersion"

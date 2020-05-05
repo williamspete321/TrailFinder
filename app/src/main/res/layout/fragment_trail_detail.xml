@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -28,12 +28,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
-                app:title="@{trail.name}"
-                app:expandedTitleTextAppearance="@style/ExpandedAppBar"
-                app:expandedTitleMarginStart="@dimen/collapsing_toolbar_expanded_title_margin_start"
-                app:expandedTitleMarginBottom="@dimen/collapsing_toolbar_expanded_title_margin_bottom"
                 app:contentScrim="?attr/themePrimary"
+                app:expandedTitleMarginBottom="@dimen/collapsing_toolbar_expanded_title_margin_bottom"
+                app:expandedTitleMarginStart="@dimen/collapsing_toolbar_expanded_title_margin_start"
+                app:expandedTitleTextAppearance="@style/ExpandedAppBar"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:title="@{trail.name}"
                 app:toolbarId="@+id/fragment_detail_toolbar">
 
                 <ImageView
@@ -55,27 +55,8 @@
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="?attr/themeContentBackground"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:context=".ui.traildetail.TrailDetailActivity"
-            tools:showIn="@layout/activity_trail_detail">
-
-            <TextView
-                android:id="@+id/trail_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@{trail.name}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="@string/sample_trail_title" />
-
-        </androidx.core.widget.NestedScrollView>
+        <include android:id="@+id/trail_detail_scrolling_layout"
+        layout="@layout/trail_detail_content_scrolling" bind:includedTrail="@{trail}"/>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

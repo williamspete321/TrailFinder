@@ -14,15 +14,23 @@
     <dimen name="button_margin_horizontal">50dp</dimen>
     <dimen name="button_elevation">4dp</dimen>
 
+    <dimen name="recycler_view_padding">16dp</dimen>
+
     <dimen name="cardview_text_size">24sp</dimen>
     <dimen name="cardview_corner_radius">16dp</dimen>
     <dimen name="cardview_margin_vertical">8dp</dimen>
-
-    <dimen name="big_margin">16dp</dimen>
-    <dimen name="small_margin">8dp</dimen>
+    <dimen name="cardview_textview_layout_margin">16dp</dimen>
 
     <dimen name="vertical_margin_fragment_insert">48dp</dimen>
 
-    <dimen name="small_padding">8dp</dimen>
-    <dimen name="big_padding">16dp</dimen>
+    <dimen name="map_vertical_margin">16dp</dimen>
+
+    <dimen name="trail_detail_textview_padding">8dp</dimen>
+    <dimen name="trail_detail_textview_vertical_margin">16dp</dimen>
+    <dimen name="trail_detail_textview_horizontal_margin">16dp</dimen>
+    <dimen name="trail_detail_textview_difficulty_text_size">36sp</dimen>
+    <dimen name="trail_detail_textview_trail_length_text_size">36sp</dimen>
+    <dimen name="trail_detail_textview_trail_info_text_size">24sp</dimen>
+    <dimen name="trail_detail_textview_trail_summary_text_size">20sp</dimen>
+
 </resources>

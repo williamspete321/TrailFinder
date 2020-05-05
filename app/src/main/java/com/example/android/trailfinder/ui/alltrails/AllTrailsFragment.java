@@ -20,6 +20,9 @@ import com.example.android.trailfinder.ui.main.MainActivityFragment;
 import com.example.android.trailfinder.ui.traildetail.TrailDetailActivity;
 import com.example.android.trailfinder.ui.traildetail.TrailDetailFragment;
 import com.example.android.trailfinder.utilities.InjectorUtils;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 import timber.log.Timber;
 
@@ -28,12 +31,13 @@ public class AllTrailsFragment extends Fragment
 
     private FragmentTrailListBinding binding;
 
-    private Location location;
-
     private RecyclerView recyclerView;
     private AllTrailsAdapter adapter;
     private AllTrailsViewModel viewModel;
     private AllTrailsViewModelFactory factory;
+
+    private FusedLocationProviderClient fusedLocationClient;
+    private Location userLocation;
 
     public AllTrailsFragment() {
     }
@@ -49,17 +53,30 @@ public class AllTrailsFragment extends Fragment
         binding = FragmentTrailListBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
-        setupUI();
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
+        getLastLocation();
+
         return view;
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    private void getLastLocation() {
+        fusedLocationClient.getLastLocation()
+                .addOnSuccessListener(getActivity(), location -> {
+                    if(location != null) {
+                        userLocation = location;
+                        Timber.d("userLocation = Latitude: %1$.8f\tLongitude: %2$.8f",
+                                userLocation.getLatitude(), userLocation.getLongitude());
+                        setupUI();
+                    }
+                });
+    }
+    
+    private void setupUI() {
+        setupRecyclerView();
         setupViewModel();
     }
 
-    private void setupUI() {
+    private void setupRecyclerView() {
         recyclerView = binding.trailListRecyclerview;
         adapter = new AllTrailsAdapter(getActivity());
         adapter.setOnItemClickListener(this);
@@ -68,11 +85,11 @@ public class AllTrailsFragment extends Fragment
 
     private void setupViewModel() {
         factory = InjectorUtils.provideTrailListViewModelFactory(getActivity()
-                .getApplicationContext());
+                .getApplicationContext(), userLocation);
 
         viewModel = new ViewModelProvider(this, factory).get(AllTrailsViewModel.class);
 
-        viewModel.getAllTrails().observe(getViewLifecycleOwner(), trails -> {
+        viewModel.getTrails().observe(getViewLifecycleOwner(), trails -> {
             Timber.d("Updating list of trails from LiveData in ViewModel");
             adapter.setData(trails);
         });

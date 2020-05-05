@@ -7,7 +7,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.android.trailfinder.data.TrailDummyData;
 import com.example.android.trailfinder.data.repository.TrailRepository;
 import com.example.android.trailfinder.data.database.model.Trail;
 
@@ -16,33 +15,26 @@ import java.util.Random;
 
 public class TrailDetailViewModel extends ViewModel {
 
-    private final TrailRepository trailRepository;
     private final LiveData<Trail> selectedTrail;
 
-    public TrailDetailViewModel(TrailRepository trailRepository, int trailId) {
-
-        Location currentLocation = new Location("");
-        currentLocation.setLatitude(TrailDummyData.LAT_ATL);
-        currentLocation.setLongitude(TrailDummyData.LON_ATL);
-
-        this.trailRepository = trailRepository;
-        selectedTrail = selectTrail(trailId, currentLocation);
+    public TrailDetailViewModel(TrailRepository trailRepository, int trailId, Location userLocation) {
+        selectedTrail = selectTrail(trailRepository, trailId, userLocation);
     }
 
     public LiveData<Trail> getTrail() {
         return selectedTrail;
     }
 
-    private LiveData<Trail> selectTrail(int id, Location location) {
+    private LiveData<Trail> selectTrail(TrailRepository repository, int id, Location location) {
         if (id == 0) {
-            return getRandomTrail(location);
+            return getRandomTrail(repository, location);
         } else {
-            return getTrailById(id, location);
+            return getTrailById(repository, id, location);
         }
     }
 
-    private LiveData<Trail> getTrailById(int id, Location location) {
-        LiveData<Trail> currentTrail = trailRepository.getTrailById(id, location);
+    private LiveData<Trail> getTrailById(TrailRepository repository, int id, Location location) {
+        LiveData<Trail> currentTrail = repository.getTrailById(id, location);
 
         MediatorLiveData<Trail> trailById = new MediatorLiveData<>();
         trailById.postValue(null);
@@ -56,8 +48,8 @@ public class TrailDetailViewModel extends ViewModel {
         return trailById;
     }
 
-    private LiveData<Trail> getRandomTrail(Location location) {
-        LiveData<List<Trail>> currentAllTrails = trailRepository.getAllTrails(location);
+    private LiveData<Trail> getRandomTrail(TrailRepository repository, Location location) {
+        LiveData<List<Trail>> currentAllTrails = repository.getAllTrails(location);
 
         MediatorLiveData<Trail> randomTrail = new MediatorLiveData<>();
         randomTrail.postValue(null);

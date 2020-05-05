@@ -9,30 +9,26 @@ import com.example.android.trailfinder.data.database.AppDatabase;
 import com.example.android.trailfinder.data.network.NetworkDataSource;
 import com.example.android.trailfinder.ui.traildetail.TrailDetailViewModelFactory;
 import com.example.android.trailfinder.ui.alltrails.AllTrailsViewModelFactory;
+import com.google.android.gms.location.LocationServices;
 
 public class InjectorUtils {
 
     public static TrailRepository provideRepository(Context context) {
-
         AppDatabase appDatabase = AppDatabase.getInstance(context.getApplicationContext());
         AppExecutors appExecutors = AppExecutors.getInstance();
-
         return TrailRepository.getInstance(appDatabase.trailDao(), appExecutors);
     }
 
-    public static AllTrailsViewModelFactory provideTrailListViewModelFactory(Context context) {
-
+    public static AllTrailsViewModelFactory provideTrailListViewModelFactory(
+            Context context, Location userLocation) {
         TrailRepository trailRepository = provideRepository(context.getApplicationContext());
-
-        return new AllTrailsViewModelFactory(trailRepository);
+        return new AllTrailsViewModelFactory(trailRepository, userLocation);
     }
 
-    public static TrailDetailViewModelFactory provideTrailDetailViewModelFactory(Context context,
-                                                                                 int trailId) {
-
+    public static TrailDetailViewModelFactory provideTrailDetailViewModelFactory(
+            Context context, int trailId, Location userLocation) {
         TrailRepository trailRepository = provideRepository(context.getApplicationContext());
-
-        return new TrailDetailViewModelFactory(trailRepository, trailId);
+        return new TrailDetailViewModelFactory(trailRepository, trailId, userLocation);
     }
 
 
