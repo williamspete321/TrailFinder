@@ -11,6 +11,7 @@
     </data>
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?attr/themeContentBackground"
@@ -22,11 +23,12 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-            <FrameLayout
+            
+            <fragment
                 android:id="@+id/map_fragment_container"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                class="com.example.android.trailfinder.ui.traildetail.MyMapFragment"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_trail_detail"
                 app:layout_constraintStart_toStartOf="parent"

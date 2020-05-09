@@ -3,10 +3,8 @@ package com.example.android.trailfinder.data.repository;
 import android.location.Location;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MediatorLiveData;
 
 import com.example.android.trailfinder.data.executor.AppExecutors;
-import com.example.android.trailfinder.data.network.NetworkDataSource;
 import com.example.android.trailfinder.data.database.model.TrailList;
 import com.example.android.trailfinder.data.database.TrailDao;
 import com.example.android.trailfinder.data.database.model.Trail;
