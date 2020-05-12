@@ -12,9 +12,15 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        // Sign up for an API Key here: https://www.hikingproject.com/data
+        buildConfigField "String", "HIKING_PROJECT_API_KEY", HIKING_PROJECT_API_KEY
     }
 
     buildTypes {
+        debug {
+            resValue "string", "GOOGLE_MAPS_API_KEY", GOOGLE_MAPS_API_KEY_DEBUG
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
@@ -68,7 +74,7 @@ dependencies {
     // Testing
     implementation "com.jakewharton.timber:timber:$rootProject.timberVersion"
     androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }

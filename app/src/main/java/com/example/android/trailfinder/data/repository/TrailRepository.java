@@ -1,10 +1,11 @@
 package com.example.android.trailfinder.data.repository;
 
 import android.location.Location;
+import android.os.Build;
 
 import androidx.lifecycle.LiveData;
-import androidx.viewbinding.BuildConfig;
 
+import com.example.android.trailfinder.BuildConfig;
 import com.example.android.trailfinder.R;
 import com.example.android.trailfinder.data.executor.AppExecutors;
 import com.example.android.trailfinder.data.database.model.TrailList;
@@ -21,8 +22,7 @@ import retrofit2.Response;
 
 public class TrailRepository {
 
-    // Sign up for an API Key here: https://www.hikingproject.com/data
-    private static final String API_KEY = "YOUR_KEY_HERE";
+    private static final String API_KEY = BuildConfig.HIKING_PROJECT_API_KEY;
     private static final int MAX_DISTANCE_TO_TRAIL = 25;
 
     private static final int SECONDS_IN_MILLIS = 1000;
