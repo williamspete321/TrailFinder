@@ -3,7 +3,9 @@ package com.example.android.trailfinder.data.repository;
 import android.location.Location;
 
 import androidx.lifecycle.LiveData;
+import androidx.viewbinding.BuildConfig;
 
+import com.example.android.trailfinder.R;
 import com.example.android.trailfinder.data.executor.AppExecutors;
 import com.example.android.trailfinder.data.database.model.TrailList;
 import com.example.android.trailfinder.data.database.TrailDao;
@@ -41,7 +43,6 @@ public class TrailRepository {
 
     public static TrailRepository getInstance(final TrailDao trailDao,
                                               final AppExecutors appExecutors) {
-
         if (trailRepository == null) {
             synchronized (TrailRepository.class) {
                 trailRepository = new TrailRepository(trailDao, appExecutors);
