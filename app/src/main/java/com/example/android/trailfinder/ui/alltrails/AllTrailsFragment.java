@@ -1,5 +1,6 @@
 package com.example.android.trailfinder.ui.alltrails;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.location.Location;
@@ -16,8 +17,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.android.trailfinder.R;
 import com.example.android.trailfinder.databinding.FragmentTrailListBinding;
 import com.example.android.trailfinder.data.database.model.Trail;
+import com.example.android.trailfinder.ui.OnTrailLoadedListener;
 import com.example.android.trailfinder.ui.main.MainActivityFragment;
 import com.example.android.trailfinder.ui.traildetail.TrailDetailActivity;
 import com.example.android.trailfinder.ui.traildetail.TrailDetailFragment;
@@ -31,6 +34,8 @@ import timber.log.Timber;
 public class AllTrailsFragment extends Fragment
         implements AllTrailsAdapter.OnItemClickListener {
 
+    private OnTrailLoadedListener listener;
+
     private FragmentTrailListBinding binding;
 
     private AllTrailsAdapter adapter;
@@ -43,6 +48,17 @@ public class AllTrailsFragment extends Fragment
 
     public static AllTrailsFragment newInstance() {
         return new AllTrailsFragment();
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        try {
+            listener = (OnTrailLoadedListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString()
+            + getString(R.string.class_cast_exception_message));
+        }
     }
 
     @Override
@@ -100,6 +116,7 @@ public class AllTrailsFragment extends Fragment
 
         viewModel.getTrails().observe(getViewLifecycleOwner(), trails -> {
             adapter.setData(trails);
+            listener.updateProgressBar();
         });
     }
 

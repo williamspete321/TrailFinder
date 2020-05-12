@@ -5,30 +5,33 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.appwidget.AppWidgetManager;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 
 import com.example.android.trailfinder.R;
-import com.example.android.trailfinder.TrailWidgetProvider;
 import com.example.android.trailfinder.databinding.ActivityTrailDetailBinding;
-import com.example.android.trailfinder.ui.main.MainActivityFragment;
+import com.example.android.trailfinder.ui.OnTrailLoadedListener;
 
-public class TrailDetailActivity extends AppCompatActivity {
+public class TrailDetailActivity extends AppCompatActivity
+        implements OnTrailLoadedListener {
 
-    private int trailId;
+    private ProgressBar progressBar;
+    private FrameLayout frameLayoutFragmentContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityTrailDetailBinding activityTrailDetailBinding
+        ActivityTrailDetailBinding binding
                 = DataBindingUtil.setContentView(this, R.layout.activity_trail_detail);
+
+        progressBar = binding.progressBarTrailDetail;
+        frameLayoutFragmentContainer = binding.fragmentDetailContainer;
 
         if(savedInstanceState == null) {
 
-            trailId = 0;
+            int trailId = 0;
 
             if(getIntent().hasExtra(TrailDetailFragment.ID)) {
                 trailId = getIntent().getIntExtra(TrailDetailFragment.ID, 0);
@@ -52,8 +55,10 @@ public class TrailDetailActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
-
+    public void updateProgressBar() {
+        if(progressBar.getVisibility() == View.VISIBLE) {
+            progressBar.setVisibility(View.INVISIBLE);
+            frameLayoutFragmentContainer.setVisibility(View.VISIBLE);
+        }
     }
 }

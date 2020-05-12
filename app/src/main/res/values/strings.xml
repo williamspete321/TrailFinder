@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">Trail Finder</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
     <string name="find_me_a_trail">Find Me A Trail!</string>
     <string name="let_me_choose">Let Me Choose!</string>
+
+    <string name="class_cast_exception_message"> must implement OnTrailLoadedListener</string>
 
     <string name="trail_difficulty_easy">Easy</string>
     <string name="trail_difficulty_moderate">Moderate</string>

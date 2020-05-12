@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
 import androidx.core.widget.NestedScrollView;
@@ -20,6 +21,7 @@ import android.view.ViewGroup;
 import com.example.android.trailfinder.R;
 import com.example.android.trailfinder.TrailWidgetProvider;
 import com.example.android.trailfinder.databinding.FragmentTrailDetailBinding;
+import com.example.android.trailfinder.ui.OnTrailLoadedListener;
 import com.example.android.trailfinder.utilities.InjectorUtils;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -36,6 +38,8 @@ import java.util.Locale;
 import timber.log.Timber;
 
 public class TrailDetailFragment extends Fragment implements OnMapReadyCallback {
+
+    private OnTrailLoadedListener listener;
 
     private FragmentTrailDetailBinding binding;
 
@@ -58,9 +62,21 @@ public class TrailDetailFragment extends Fragment implements OnMapReadyCallback 
     }
 
     @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        try {
+            listener = (OnTrailLoadedListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString()
+                    + getString(R.string.class_cast_exception_message));
+        }
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        Timber.d("Fragment has been created");
         if(getArguments() != null) {
             trailId = getArguments().getInt(ID);
         }
@@ -101,6 +117,7 @@ public class TrailDetailFragment extends Fragment implements OnMapReadyCallback 
             if(trail != null) {
                 binding.setTrail(trail);
                 addTrailMarker();
+                listener.updateProgressBar();
             }
         });
 

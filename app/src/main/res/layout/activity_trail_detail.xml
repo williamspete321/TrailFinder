@@ -7,9 +7,22 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="?attr/themeContentBackground"
         tools:context=".ui.traildetail.TrailDetailActivity">
 
+        <ProgressBar
+            android:id="@+id/progress_bar_trail_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="visible"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
         <FrameLayout
+            android:visibility="invisible"
             android:id="@+id/fragment_detail_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

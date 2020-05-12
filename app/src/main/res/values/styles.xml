@@ -23,7 +23,7 @@
         <item name="themePrimary">@color/colorGreen</item>
         <item name="themePrimaryDark">@color/colorGreenDark</item>
         <item name="themePrimaryLight">@color/colorGreenLight</item>
-        <item name="themeAccent">@color/colorPinkDark</item>
+        <item name="themeAccent">@color/colorOrangeDark</item>
         <item name="themeButtonIconColor">@color/colorBrown</item>
         <item name="themeButtonTextColor">@color/colorBrown</item>
         <item name="themeContentBackground">@color/colorBrownLight</item>

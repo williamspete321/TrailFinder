@@ -6,18 +6,30 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 
 import com.example.android.trailfinder.R;
 import com.example.android.trailfinder.databinding.ActivityTrailListBinding;
+import com.example.android.trailfinder.ui.OnTrailLoadedListener;
 
-public class AllTrailsActivity extends AppCompatActivity {
+public class AllTrailsActivity extends AppCompatActivity
+        implements OnTrailLoadedListener {
+
+    private ProgressBar progressBar;
+    private FrameLayout frameLayoutFragmentContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityTrailListBinding activityTrailListBinding =
+        ActivityTrailListBinding binding =
                 DataBindingUtil.setContentView(this, R.layout.activity_trail_list);
-        setSupportActionBar(activityTrailListBinding.activityListToolbar);
+
+        progressBar = binding.progressBarTrailList;
+        frameLayoutFragmentContainer = binding.fragmentListContainer;
+
+        setSupportActionBar(binding.activityListToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -37,5 +49,13 @@ public class AllTrailsActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    @Override
+    public void updateProgressBar() {
+        if(progressBar.getVisibility() == View.VISIBLE) {
+            progressBar.setVisibility(View.INVISIBLE);
+            frameLayoutFragmentContainer.setVisibility(View.VISIBLE);
+        }
     }
 }
