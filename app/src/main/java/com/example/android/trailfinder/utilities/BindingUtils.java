@@ -15,12 +15,14 @@ public class BindingUtils {
         if(url == null || url.isEmpty()) {
             Picasso.get()
                     .load(R.drawable.image_error_white_24dp)
+                    .centerCrop()
                     .fit()
                     .error(R.drawable.image_error_white_24dp)
                     .into(view);
         } else {
             Picasso.get()
                     .load(url)
+                    .centerCrop()
                     .fit()
                     .placeholder(R.drawable.image_loading_white_24dp)
                     .error(R.drawable.image_error_white_24dp)
@@ -32,15 +34,12 @@ public class BindingUtils {
     public static void setTrailDifficultyTextColor(TextView view, String difficulty) {
         if(difficulty != null) {
             switch (difficulty) {
-                // "Easy" color
                 case "green":
                     view.setTextColor(view.getResources().getColor(R.color.colorGreen));
                     break;
-                // "Moderate" color
                 case "blue":
                     view.setTextColor(view.getResources().getColor(R.color.colorBlue));
                     break;
-                // "Difficult" color
                 case "black":
                     view.setTextColor(view.getResources().getColor(R.color.colorRed));
                     break;

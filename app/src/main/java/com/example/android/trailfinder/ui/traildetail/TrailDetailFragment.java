@@ -1,5 +1,9 @@
 package com.example.android.trailfinder.ui.traildetail;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Bundle;
 
@@ -14,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.android.trailfinder.R;
+import com.example.android.trailfinder.TrailWidgetProvider;
 import com.example.android.trailfinder.databinding.FragmentTrailDetailBinding;
 import com.example.android.trailfinder.utilities.InjectorUtils;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -75,8 +80,6 @@ public class TrailDetailFragment extends Fragment implements OnMapReadyCallback 
     }
 
     private void getLastLocation() {
-        Timber.d("getLastLocation called");
-
         FusedLocationProviderClient fusedLocationClient = LocationServices
                 .getFusedLocationProviderClient(getActivity());
         fusedLocationClient.getLastLocation()
@@ -98,9 +101,7 @@ public class TrailDetailFragment extends Fragment implements OnMapReadyCallback 
             if(trail != null) {
                 binding.setTrail(trail);
                 addTrailMarker();
-                Timber.d("Non-null trail has been returned by LiveData");
             }
-            Timber.d("Updating trail from LiveData in ViewModel");
         });
 
     }
@@ -116,7 +117,6 @@ public class TrailDetailFragment extends Fragment implements OnMapReadyCallback 
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        Timber.d("onMapReady called");
         googleMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
         map = googleMap;
         map.setMyLocationEnabled(true);
@@ -174,4 +174,22 @@ public class TrailDetailFragment extends Fragment implements OnMapReadyCallback 
         }
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        if(binding.getTrail() != null) {
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences(
+                    getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt(getString(R.string.last_viewed_trail_id_key),binding.getTrail().getId());
+            editor.apply();
+
+            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getActivity());
+            int[] appWidgetIds = appWidgetManager
+                    .getAppWidgetIds(new ComponentName(getActivity(), TrailWidgetProvider.class));
+            TrailWidgetProvider.updateTrailWidget(getActivity(), appWidgetManager, appWidgetIds);
+        }
+    }
 }

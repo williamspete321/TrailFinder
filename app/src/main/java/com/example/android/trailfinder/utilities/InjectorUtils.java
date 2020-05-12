@@ -6,10 +6,8 @@ import android.location.Location;
 import com.example.android.trailfinder.data.executor.AppExecutors;
 import com.example.android.trailfinder.data.repository.TrailRepository;
 import com.example.android.trailfinder.data.database.AppDatabase;
-import com.example.android.trailfinder.data.network.NetworkDataSource;
 import com.example.android.trailfinder.ui.traildetail.TrailDetailViewModelFactory;
 import com.example.android.trailfinder.ui.alltrails.AllTrailsViewModelFactory;
-import com.google.android.gms.location.LocationServices;
 
 public class InjectorUtils {
 

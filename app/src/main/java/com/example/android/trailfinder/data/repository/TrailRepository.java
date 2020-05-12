@@ -16,10 +16,10 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import timber.log.Timber;
 
 public class TrailRepository {
 
+    // Sign up for an API Key here: https://www.hikingproject.com/data
     private static final String API_KEY = "YOUR_KEY_HERE";
     private static final int MAX_DISTANCE_TO_TRAIL = 25;
 
@@ -45,12 +45,13 @@ public class TrailRepository {
         if (trailRepository == null) {
             synchronized (TrailRepository.class) {
                 trailRepository = new TrailRepository(trailDao, appExecutors);
-
-                Timber.d("Repository has been created");
             }
-            Timber.d("Instance of repository has been called");
         }
         return trailRepository;
+    }
+
+    public Trail getLastViewedTrailById(Integer id) {
+        return trailDao.getLastViewedTrailById(id);
     }
 
     public LiveData<Trail> getTrailById(Integer id, Location location) {
@@ -64,53 +65,48 @@ public class TrailRepository {
     }
 
     private void loadTrailsFromNetwork(Location location) {
-        appExecutors.diskIO().execute(new Runnable() {
-            @Override
-            public void run() {
+        appExecutors.diskIO().execute(() -> {
 
-                boolean trailsExist = (trailDao.hasTrails(getMaxRefreshTime()).size() != 0);
+            boolean trailsExist = (trailDao.hasTrails(getMaxRefreshTime()).size() != 0);
 
-                if (!trailsExist) {
+            if (!trailsExist) {
 
-                    trailWebService.getAllTrails(
-                            location.getLatitude(),
-                            location.getLongitude(),
-                            MAX_DISTANCE_TO_TRAIL,
-                            API_KEY)
-                            .enqueue(new Callback<TrailList>() {
-                                @Override
-                                public void onResponse(Call<TrailList> call, Response<TrailList> response) {
-                                    if (response.body() != null) {
-                                        List<Trail> trails = response.body().getTrails();
-                                        Timber.d("num of trails = %d", trails.size());
-                                        for (Trail trail : trails) {
-                                            trail.setLastRefresh(System.currentTimeMillis());
-                                        }
-                                        appExecutors.diskIO().execute(() -> {
-                                            trailDao.deleteAllTrails();
-                                            trailDao.insertAll(trails);
-                                            Timber.d("New data inserted.");
-                                        });
+                trailWebService.getAllTrails(
+                        location.getLatitude(),
+                        location.getLongitude(),
+                        MAX_DISTANCE_TO_TRAIL,
+                        API_KEY)
+                        .enqueue(new Callback<TrailList>() {
+                            @Override
+                            public void onResponse(Call<TrailList> call, Response<TrailList> response) {
+                                if (response.body() != null) {
+                                    List<Trail> trails = response.body().getTrails();
+                                    for (Trail trail : trails) {
+                                        trail.setLastRefresh(System.currentTimeMillis());
                                     }
+                                    appExecutors.diskIO().execute(() -> {
+                                        trailDao.deleteAllTrails();
+                                        trailDao.insertAll(trails);
+                                    });
                                 }
+                            }
 
-                                @Override
-                                public void onFailure(Call<TrailList> call, Throwable t) {
+                            @Override
+                            public void onFailure(Call<TrailList> call, Throwable t) {
 
-                                }
-                            });
-
-                }
+                            }
+                        });
 
             }
+
         });
 
     }
 
     private long getMaxRefreshTime() {
-//        return System.currentTimeMillis() - HOURS_IN_MILLIS;
+        return System.currentTimeMillis() - HOURS_IN_MILLIS;
         // For testing
-        return System.currentTimeMillis();
+//        return System.currentTimeMillis();
     }
 
 }

@@ -35,6 +35,7 @@
     <style name="trail_finder_button_style">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/button_margin_vertical</item>
         <item name="android:background">@drawable/rounded_corners_button</item>
         <item name="android:textColor">?attr/themeButtonTextColor</item>
         <item name="android:elevation">@dimen/button_elevation</item>

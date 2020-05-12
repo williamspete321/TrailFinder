@@ -30,5 +30,11 @@
     <string name="sample_trail_low">6,289\'</string>
     <string name="sample_trail_summary">A fun singletrack lollipop loop up and
         around Mt. Galbraith\'s peak with views in all directions.</string>
+    <string name="appwidget_default_text">Data Not Available</string>
+    <string name="add_widget">Add widget</string>
+    <string name="last_viewed_trail_id_key">Last Viewed Trail ID Key</string>
+    <string name="last_viewed_trail_lat_key">Last Viewed Trail LAT Key</string>
+    <string name="last_viewed_trail_lon_key">Last Viewed Trail LON Key</string>
+    <string name="preference_file_key">Preference File Key</string>
 
 </resources>

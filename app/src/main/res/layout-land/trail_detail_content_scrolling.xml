@@ -30,16 +30,9 @@
                 android:layout_height="0dp"
                 class="com.example.android.trailfinder.ui.traildetail.MyMapFragment"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_trail_detail"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline_horizontal_trail_detail"
-                android:layout_width="@dimen/trail_detail_guideline_horizontal_margin"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.5"/>
+                app:layout_constraintEnd_toEndOf="@+id/guideline_vertical_trail_detail"/>
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline_vertical_trail_detail"
@@ -48,15 +41,30 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.5"/>
 
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_vertical_trail_detail_right"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/trail_detail_guideline_vertical_margin"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.75"/>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_horizontal_trail_detail"
+                android:layout_width="@dimen/trail_detail_guideline_horizontal_margin"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.5"/>
+
             <TextView
                 android:id="@+id/textview_trail_difficulty"
                 style="@style/trail_detail_textview_style"
                 app:difficultyText="@{includedTrail.difficulty}"
                 app:difficultyTextColor="@{includedTrail.difficulty}"
                 android:textSize="@dimen/trail_detail_textview_difficulty_text_size"
-                app:layout_constraintTop_toBottomOf="@+id/guideline_horizontal_trail_detail"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_trail_detail"
+                android:layout_marginTop="@dimen/trail_detail_textview_vertical_margin_large"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/map_fragment_container"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_trail_detail_right"
                 tools:text="@string/sample_trail_difficulty"/>
 
             <TextView
@@ -65,8 +73,8 @@
                 android:text="@{@string/trail_length(includedTrail.length)}"
                 android:textSize="@dimen/trail_detail_textview_trail_length_text_size"
                 android:textColor="@color/colorBrownDark"
-                app:layout_constraintTop_toBottomOf="@+id/guideline_horizontal_trail_detail"
-                app:layout_constraintStart_toStartOf="@+id/guideline_vertical_trail_detail"
+                app:layout_constraintBottom_toBottomOf="@+id/textview_trail_difficulty"
+                app:layout_constraintStart_toEndOf="@+id/guideline_vertical_trail_detail_right"
                 tools:text="@string/sample_trail_length"/>
 
             <TextView
@@ -74,7 +82,7 @@
                 style="@style/trail_detail_textview_info_style"
                 android:text="@{@string/trail_ascent(includedTrail.ascent)}"
                 app:layout_constraintTop_toBottomOf="@+id/textview_trail_difficulty"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/map_fragment_container"
                 tools:text="@string/sample_trail_ascent"/>
 
             <TextView
@@ -82,7 +90,7 @@
                 style="@style/trail_detail_textview_info_style"
                 android:text="@{@string/trail_high(includedTrail.high)}"
                 app:layout_constraintTop_toBottomOf="@+id/textview_trail_length"
-                app:layout_constraintStart_toStartOf="@+id/guideline_vertical_trail_detail"
+                app:layout_constraintStart_toEndOf="@+id/guideline_vertical_trail_detail_right"
                 tools:text="@string/sample_trail_high"/>
 
             <TextView
@@ -90,7 +98,7 @@
                 style="@style/trail_detail_textview_info_style"
                 android:text="@{@string/trail_descent(includedTrail.descent)}"
                 app:layout_constraintTop_toBottomOf="@+id/textview_trail_ascent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/map_fragment_container"
                 tools:text="@string/sample_trail_descent"/>
 
             <TextView
@@ -98,20 +106,21 @@
                 style="@style/trail_detail_textview_info_style"
                 android:text="@{@string/trail_low(includedTrail.low)}"
                 app:layout_constraintTop_toBottomOf="@+id/textview_trail_high"
-                app:layout_constraintStart_toStartOf="@+id/guideline_vertical_trail_detail"
+                app:layout_constraintStart_toEndOf="@+id/guideline_vertical_trail_detail_right"
                 tools:text="@string/sample_trail_low"/>
 
             <TextView
                 android:id="@+id/textview_trail_summary"
                 style="@style/trail_detail_textview_style"
+                android:maxWidth="@dimen/trail_detail_textview_trail_summary_land_max_width"
                 android:layout_marginEnd="@dimen/trail_detail_textview_horizontal_margin"
                 app:summaryText="@{includedTrail.summary}"
                 android:textSize="@dimen/trail_detail_textview_trail_summary_text_size"
                 android:textColor="?attr/themeTextViewTextColorLight"
                 android:textAlignment="center"
                 app:layout_constraintTop_toBottomOf="@+id/textview_trail_descent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline_vertical_trail_detail_right"
+                app:layout_constraintEnd_toEndOf="@+id/guideline_vertical_trail_detail_right"
                 tools:text="@string/sample_trail_summary"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
 package com.example.android.trailfinder.ui.alltrails;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.location.Location;
 import android.os.Bundle;
 
@@ -8,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -31,10 +33,7 @@ public class AllTrailsFragment extends Fragment
 
     private FragmentTrailListBinding binding;
 
-    private RecyclerView recyclerView;
     private AllTrailsAdapter adapter;
-    private AllTrailsViewModel viewModel;
-    private AllTrailsViewModelFactory factory;
 
     private FusedLocationProviderClient fusedLocationClient;
     private Location userLocation;
@@ -64,8 +63,6 @@ public class AllTrailsFragment extends Fragment
                 .addOnSuccessListener(getActivity(), location -> {
                     if(location != null) {
                         userLocation = location;
-                        Timber.d("userLocation = Latitude: %1$.8f\tLongitude: %2$.8f",
-                                userLocation.getLatitude(), userLocation.getLongitude());
                         setupUI();
                     }
                 });
@@ -77,20 +74,31 @@ public class AllTrailsFragment extends Fragment
     }
 
     private void setupRecyclerView() {
-        recyclerView = binding.trailListRecyclerview;
+        RecyclerView recyclerView = binding.trailListRecyclerview;
+        int numberOfColumns = 1;
+        if(isLandscape()) {
+            numberOfColumns = 2;
+        }
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),numberOfColumns));
         adapter = new AllTrailsAdapter(getActivity());
         adapter.setOnItemClickListener(this);
         recyclerView.setAdapter(adapter);
     }
 
+    private boolean isLandscape() {
+        return getResources().getConfiguration().orientation
+                == Configuration.ORIENTATION_LANDSCAPE;
+    }
+
     private void setupViewModel() {
-        factory = InjectorUtils.provideTrailListViewModelFactory(getActivity()
+        AllTrailsViewModelFactory factory = InjectorUtils
+                .provideTrailListViewModelFactory(getActivity()
                 .getApplicationContext(), userLocation);
 
-        viewModel = new ViewModelProvider(this, factory).get(AllTrailsViewModel.class);
+        AllTrailsViewModel viewModel = new ViewModelProvider(this, factory)
+                .get(AllTrailsViewModel.class);
 
         viewModel.getTrails().observe(getViewLifecycleOwner(), trails -> {
-            Timber.d("Updating list of trails from LiveData in ViewModel");
             adapter.setData(trails);
         });
     }

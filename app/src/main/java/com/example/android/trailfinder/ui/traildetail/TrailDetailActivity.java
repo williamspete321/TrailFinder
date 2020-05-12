@@ -5,13 +5,20 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.example.android.trailfinder.R;
+import com.example.android.trailfinder.TrailWidgetProvider;
 import com.example.android.trailfinder.databinding.ActivityTrailDetailBinding;
 import com.example.android.trailfinder.ui.main.MainActivityFragment;
 
 public class TrailDetailActivity extends AppCompatActivity {
+
+    private int trailId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +28,7 @@ public class TrailDetailActivity extends AppCompatActivity {
 
         if(savedInstanceState == null) {
 
-            int trailId = 0;
+            trailId = 0;
 
             if(getIntent().hasExtra(TrailDetailFragment.ID)) {
                 trailId = getIntent().getIntExtra(TrailDetailFragment.ID, 0);
@@ -44,4 +51,9 @@ public class TrailDetailActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+    }
 }

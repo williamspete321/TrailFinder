@@ -4,10 +4,8 @@ import android.location.Location;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
-import com.example.android.trailfinder.data.TrailDummyData;
 import com.example.android.trailfinder.data.repository.TrailRepository;
 import com.example.android.trailfinder.data.database.model.Trail;
 
