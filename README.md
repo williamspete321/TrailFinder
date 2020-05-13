@@ -9,7 +9,7 @@ In order to run this project locally in Android Studio, you will need a [Hiking 
 
 ## Libraries
 *  [Android Architecture Components](https://developer.android.com/topic/libraries/architecture) for data persistance
-*  [Android Data Binding](https://developer.android.com/topic/libraries/data-binding/index.html)
+*  [Android Data Binding](https://developer.android.com/topic/libraries/data-binding/index.html) for binding UI components to data 
 *  [Google Maps SDK](https://developers.google.com/maps/documentation/android-sdk/intro) for displaying trail's location
 *  [Retrofit](https://square.github.io/retrofit/) for REST API communication
 *  [Gson](https://github.com/google/gson) for deserialization of JSON
