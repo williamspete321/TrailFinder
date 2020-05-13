@@ -1,12 +1,10 @@
 package com.example.android.trailfinder.data.repository;
 
 import android.location.Location;
-import android.os.Build;
 
 import androidx.lifecycle.LiveData;
 
 import com.example.android.trailfinder.BuildConfig;
-import com.example.android.trailfinder.R;
 import com.example.android.trailfinder.data.executor.AppExecutors;
 import com.example.android.trailfinder.data.database.model.TrailList;
 import com.example.android.trailfinder.data.database.TrailDao;
@@ -22,7 +20,7 @@ import retrofit2.Response;
 
 public class TrailRepository {
 
-    private static final String API_KEY = BuildConfig.HIKING_PROJECT_API_KEY;
+    private static final String API_KEY = BuildConfig.HIKING_PROJECT_DATA_API_KEY;
     private static final int MAX_DISTANCE_TO_TRAIL = 25;
 
     private static final int SECONDS_IN_MILLIS = 1000;
@@ -106,8 +104,6 @@ public class TrailRepository {
 
     private long getMaxRefreshTime() {
         return System.currentTimeMillis() - HOURS_IN_MILLIS;
-        // For testing
-//        return System.currentTimeMillis();
     }
 
 }

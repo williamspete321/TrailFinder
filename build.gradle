@@ -39,4 +39,5 @@ ext {
     picassoVersion = '2.71828'
     locationVersion = '17.0.0'
     mapsVersion = '17.0.0'
+
 }

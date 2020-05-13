@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        release {
+            keyAlias = 'trailKey'
+            keyPassword 'c0rOnaD0!1!415#!$'
+            storeFile file("$rootProject/keystore.jks")
+            storePassword 'm1l!3rp3@kWa5Legi7'
+        }
+    }
     compileSdkVersion 28
     buildToolsVersion "29.0.2"
 
@@ -14,7 +22,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         // Sign up for an API Key here: https://www.hikingproject.com/data
-        buildConfigField "String", "HIKING_PROJECT_API_KEY", HIKING_PROJECT_API_KEY
+        buildConfigField "String", "HIKING_PROJECT_DATA_API_KEY", HIKING_PROJECT_DATA_API_KEY
     }
 
     buildTypes {
@@ -22,9 +30,13 @@ android {
             resValue "string", "GOOGLE_MAPS_API_KEY", GOOGLE_MAPS_API_KEY_DEBUG
         }
         release {
+            resValue "string", "GOOGLE_MAPS_API_KEY", GOOGLE_MAPS_API_KEY_RELEASE
+        }
+        release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
                     'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 
