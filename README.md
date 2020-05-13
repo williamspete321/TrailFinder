@@ -13,6 +13,6 @@ In order to run this project locally in Android Studio, you will need a [Hiking 
 *  [Google Maps SDK](https://developers.google.com/maps/documentation/android-sdk/intro) for displaying trail's location
 *  [Material Design](https://developer.android.com/guide/topics/ui/look-and-feel) for visual effects
 *  [Retrofit](https://square.github.io/retrofit/) for REST API communication
-*  [Gson](https://github.com/google/gson) for deserialization of JSON
+*  [Gson](https://github.com/google/gson) for JSON deserialization
 *  [Picasso](https://github.com/square/picasso) for image loading
 *  [Timber](https://github.com/JakeWharton/timber) for logging
