@@ -115,6 +115,7 @@ public class AllTrailsFragment extends Fragment
                 .get(AllTrailsViewModel.class);
 
         viewModel.getTrails().observe(getViewLifecycleOwner(), trails -> {
+            Timber.d("LiveData has been returned");
             adapter.setData(trails);
             listener.updateProgressBar();
         });

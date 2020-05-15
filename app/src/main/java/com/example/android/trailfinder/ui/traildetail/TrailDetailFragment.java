@@ -1,9 +1,6 @@
 package com.example.android.trailfinder.ui.traildetail;
 
-import android.appwidget.AppWidgetManager;
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Bundle;
 
@@ -19,7 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.android.trailfinder.R;
-import com.example.android.trailfinder.TrailWidgetProvider;
 import com.example.android.trailfinder.databinding.FragmentTrailDetailBinding;
 import com.example.android.trailfinder.ui.OnTrailLoadedListener;
 import com.example.android.trailfinder.utilities.InjectorUtils;
@@ -191,22 +187,4 @@ public class TrailDetailFragment extends Fragment implements OnMapReadyCallback 
         }
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        if(binding.getTrail() != null) {
-            SharedPreferences sharedPreferences = getActivity().getSharedPreferences(
-                    getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putInt(getString(R.string.last_viewed_trail_id_key),binding.getTrail().getId());
-            editor.apply();
-
-            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getActivity());
-            int[] appWidgetIds = appWidgetManager
-                    .getAppWidgetIds(new ComponentName(getActivity(), TrailWidgetProvider.class));
-            TrailWidgetProvider.updateTrailWidget(getActivity(), appWidgetManager, appWidgetIds);
-        }
-    }
 }

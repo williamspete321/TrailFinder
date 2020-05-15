@@ -49,10 +49,6 @@ public class TrailRepository {
         return trailRepository;
     }
 
-    public Trail getLastViewedTrailById(Integer id) {
-        return trailDao.getLastViewedTrailById(id);
-    }
-
     public LiveData<Trail> getTrailById(Integer id, Location location) {
         loadTrailsFromNetwork(location);
         return trailDao.getTrailById(id);
@@ -103,7 +99,8 @@ public class TrailRepository {
     }
 
     private long getMaxRefreshTime() {
-        return System.currentTimeMillis() - HOURS_IN_MILLIS;
+//        return System.currentTimeMillis() - HOURS_IN_MILLIS;
+        return System.currentTimeMillis();
     }
 
 }

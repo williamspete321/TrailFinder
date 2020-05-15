@@ -16,9 +16,6 @@ public interface TrailDao {
     @Query("SELECT * FROM trail_table WHERE id = :id")
     LiveData<Trail> getTrailById(int id);
 
-    @Query("SELECT * FROM trail_table WHERE id = :id")
-    Trail getLastViewedTrailById(int id);
-
     @Query("SELECT * FROM trail_table WHERE lastRefresh > :lastRefreshMax ORDER BY id ASC")
     LiveData<List<Trail>> getAllTrails(long lastRefreshMax);
 

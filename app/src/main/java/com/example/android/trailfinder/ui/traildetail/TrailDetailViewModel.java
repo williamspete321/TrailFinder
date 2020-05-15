@@ -33,24 +33,13 @@ public class TrailDetailViewModel extends ViewModel {
         }
     }
 
-    private LiveData<Trail> getTrailById(TrailRepository repository, int id, Location location) {
-        LiveData<Trail> currentTrail = repository.getTrailById(id, location);
-
-        MediatorLiveData<Trail> trailById = new MediatorLiveData<>();
-        trailById.postValue(null);
-
-        trailById.addSource(currentTrail, trail -> {
-            if(trail != null) {
-                trailById.removeSource(currentTrail);
-                trailById.postValue(trail);
-            }
-        });
-        return trailById;
-    }
-
     private LiveData<Trail> getRandomTrail(TrailRepository repository, Location location) {
         LiveData<List<Trail>> currentAllTrails = repository.getAllTrails(location);
 
+        // When this method is called, it may be the first time the user is accessing trail data.
+        // Because LiveData will first return null (as it works asynchronously,
+        // off the main thread), we need to use MediatorLiveData to wait for a valid LiveData Trail
+        // After trails have been loaded, we'll select a random one for the selectedTrail object.
         MediatorLiveData<Trail> randomTrail = new MediatorLiveData<>();
         randomTrail.postValue(null);
 
@@ -62,6 +51,12 @@ public class TrailDetailViewModel extends ViewModel {
             }
         });
         return randomTrail;
+    }
+
+    private LiveData<Trail> getTrailById(TrailRepository repository, int id, Location location) {
+        // MediatorLiveData is not necessary, as this method will only be called if valid Trail
+        // objects are already populated in the database.
+        return repository.getTrailById(id, location);
     }
 
 }
