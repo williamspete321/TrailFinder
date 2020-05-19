@@ -7,9 +7,6 @@ In order to run this project locally in Android Studio, you will need a [Hiking 
 *  `GOOGLE_MAPS_API_KEY_DEBUG`
 *  `GOOGLE_MAPS_API_KEY_RELEASE` (optional)
 
-## Screenshots
-![](https://github.com/williamspete321/TrailFinder/tree/master/app/src/main/res/raw/trail-finder-main.png)
-
 ## Libraries
 *  [Architecture Components](https://developer.android.com/topic/libraries/architecture) for data persistance
 *  [Data Binding](https://developer.android.com/topic/libraries/data-binding/index.html) for binding UI components to data 
