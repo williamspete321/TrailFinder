@@ -13,12 +13,16 @@ import com.example.android.trailfinder.data.database.model.Trail;
 import java.util.List;
 import java.util.Random;
 
+import timber.log.Timber;
+
 public class TrailDetailViewModel extends ViewModel {
 
     private final LiveData<Trail> selectedTrail;
 
     public TrailDetailViewModel(TrailRepository trailRepository, int trailId, Location userLocation) {
         selectedTrail = selectTrail(trailRepository, trailId, userLocation);
+        Timber.d("ViewModel has been created");
+
     }
 
     public LiveData<Trail> getTrail() {

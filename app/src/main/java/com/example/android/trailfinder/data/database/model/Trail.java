@@ -1,15 +1,10 @@
 package com.example.android.trailfinder.data.database.model;
 
-import android.widget.ImageView;
-
-import androidx.databinding.BindingAdapter;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.example.android.trailfinder.R;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.squareup.picasso.Picasso;
 
 @Entity(tableName = "trail_table")
 public class Trail {
