@@ -4,22 +4,30 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.android.trailfinder.R;
 import com.example.android.trailfinder.databinding.FragmentMainActivityBinding;
 import com.example.android.trailfinder.ui.traildetail.TrailDetailActivity;
 import com.example.android.trailfinder.ui.alltrails.AllTrailsActivity;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
 
 import timber.log.Timber;
 
@@ -47,18 +55,35 @@ public class MainActivityFragment extends Fragment {
         View view = binding.getRoot();
 
         binding.selectRandomTrailButton.setOnClickListener(v -> {
+
             Intent intent = new Intent(getActivity(), TrailDetailActivity.class);
-            startActivity(intent);
+            startTrailActivity(intent);
+
         });
 
         binding.selectTrailListButton.setOnClickListener(v -> {
+
             Intent intent = new Intent(getActivity(), AllTrailsActivity.class);
-            startActivity(intent);
+            startTrailActivity(intent);
+
         });
 
         requestLocationPermission();
 
         return view;
+    }
+
+    private void startTrailActivity(Intent intent) {
+        new InternetCheckTask(internet -> {
+
+            if(internet) {
+                startActivity(intent);
+            } else {
+                Toast.makeText(getActivity(), getString(R.string.network_not_available_message),
+                        Toast.LENGTH_SHORT).show();
+            }
+
+        });
     }
 
     @Override
@@ -94,4 +119,38 @@ public class MainActivityFragment extends Fragment {
         }
     }
 
+    static class InternetCheckTask extends AsyncTask<Void,Void,Boolean> {
+        private Consumer consumer;
+
+        public interface Consumer {
+            void accept(Boolean internet);
+        }
+
+        public InternetCheckTask(Consumer consumer) {
+            this.consumer = consumer;
+            execute();
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+            try {
+                int timeoutMs = 1500;
+                Socket socket = new Socket();
+                SocketAddress socketAddress = new InetSocketAddress("8.8.8.8", 53);
+
+                socket.connect(socketAddress, timeoutMs);
+                socket.close();
+
+                return true;
+            } catch (IOException e) {
+                Timber.d(e);
+                return false;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(Boolean internet) {
+            consumer.accept(internet);
+        }
+    }
 }

@@ -4,6 +4,8 @@
     <string name="find_me_a_trail">Find Me A Trail!</string>
     <string name="let_me_choose">Let Me Choose!</string>
 
+    <string name="network_not_available_message">Network not available. Check connection.</string>
+
     <string name="class_cast_exception_message"> must implement OnTrailLoadedListener</string>
 
     <string name="trail_difficulty_easy">Easy</string>
