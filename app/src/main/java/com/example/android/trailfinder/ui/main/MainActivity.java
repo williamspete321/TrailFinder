@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.android.trailfinder.R;
 import com.example.android.trailfinder.databinding.ActivityMainBinding;
@@ -29,4 +30,5 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
 }
