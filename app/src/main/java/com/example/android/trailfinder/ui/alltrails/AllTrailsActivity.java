@@ -45,6 +45,7 @@ public class AllTrailsActivity extends AppCompatActivity
         }
 
     }
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();

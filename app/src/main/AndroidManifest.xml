@@ -13,21 +13,20 @@
         android:roundIcon="@mipmap/hiker_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar.Forest">
+        <activity android:name=".ui.about.AboutActivity" />
         <activity
             android:name=".ui.traildetail.TrailDetailActivity"
             android:parentActivityName=".ui.main.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.main.MainActivity">
-            </meta-data>
+                android:value=".ui.main.MainActivity" />
         </activity>
         <activity
             android:name=".ui.alltrails.AllTrailsActivity"
             android:parentActivityName=".ui.main.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.main.MainActivity">
-            </meta-data>
+                android:value=".ui.main.MainActivity" />
         </activity>
         <activity android:name=".ui.main.MainActivity">
             <intent-filter>

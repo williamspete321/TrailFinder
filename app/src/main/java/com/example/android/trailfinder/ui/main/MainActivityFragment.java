@@ -90,9 +90,11 @@ public class MainActivityFragment extends Fragment {
             } catch (IOException e) {
                 Timber.d(e);
                 // Display message to UI thread if network connection fails
-                new Handler(Looper.getMainLooper()).post(() -> Toast.makeText(getActivity(),
-                        getString(R.string.network_not_available_message),
-                        Toast.LENGTH_SHORT).show());
+                new Handler(Looper.getMainLooper()).post(() -> {
+                    Toast.makeText(getActivity(),
+                            getString(R.string.network_not_available_message),
+                            Toast.LENGTH_SHORT).show();
+                });
             }
 
         });

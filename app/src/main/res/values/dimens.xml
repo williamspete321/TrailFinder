@@ -23,6 +23,15 @@
 
     <dimen name="map_vertical_margin">16dp</dimen>
 
+    <dimen name="about_textview_vertical_margin">16dp</dimen>
+    <dimen name="about_textview_vertical_margin_small">8dp</dimen>
+    <dimen name="about_textview_horizontal_padding">16dp</dimen>
+    <dimen name="about_textview_textsize_small">14sp</dimen>
+    <dimen name="about_textview_textsize_regular">18sp</dimen>
+    <dimen name="about_textview_textsize_title">40sp</dimen>
+    <dimen name="about_imageview_width">300dp</dimen>
+    <dimen name="about_imageview_height">300dp</dimen>
+
     <dimen name="trail_detail_textview_padding">8dp</dimen>
     <dimen name="trail_detail_textview_vertical_margin">16dp</dimen>
     <dimen name="trail_detail_textview_vertical_margin_large">32dp</dimen>

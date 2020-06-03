@@ -23,7 +23,7 @@
         <item name="themePrimary">@color/colorGreen</item>
         <item name="themePrimaryDark">@color/colorGreenDark</item>
         <item name="themePrimaryLight">@color/colorGreenLight</item>
-        <item name="themeAccent">@color/colorOrangeDark</item>
+        <item name="themeAccent">@color/colorBlue</item>
         <item name="themeButtonIconColor">@color/colorBrown</item>
         <item name="themeButtonTextColor">@color/colorBrown</item>
         <item name="themeContentBackground">@color/colorBrownLight</item>
@@ -41,6 +41,16 @@
         <item name="android:elevation">@dimen/button_elevation</item>
         <item name="android:padding">@dimen/button_padding</item>
         <item name="android:textSize">@dimen/button_text_size</item>
+    </style>
+
+    <style name="about_textview_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="about_textview_info_style" parent="@style/about_textview_style">
+        <item name="android:paddingStart">@dimen/about_textview_horizontal_padding</item>
+        <item name="android:paddingEnd">@dimen/about_textview_horizontal_padding</item>
     </style>
 
     <style name="trail_detail_textview_style">
