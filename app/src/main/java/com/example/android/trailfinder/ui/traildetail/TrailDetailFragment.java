@@ -11,9 +11,11 @@ import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.android.trailfinder.R;
 import com.example.android.trailfinder.databinding.FragmentTrailDetailBinding;
@@ -74,7 +76,6 @@ public class TrailDetailFragment extends Fragment implements OnMapReadyCallback 
 
         Timber.d("Fragment has been created");
         if(getArguments() != null) {
-            // play around with this and see what trailId is on rotation
             trailId = getArguments().getInt(ID);
         }
 
@@ -104,7 +105,6 @@ public class TrailDetailFragment extends Fragment implements OnMapReadyCallback 
     }
 
     private void setupViewModel(Location location) {
-        Timber.d("setupViewModel has been called");
         TrailDetailViewModelFactory factory = InjectorUtils.provideTrailDetailViewModelFactory(
                 getActivity().getApplicationContext(), trailId, location);
 
@@ -114,6 +114,7 @@ public class TrailDetailFragment extends Fragment implements OnMapReadyCallback 
         viewModel.getTrail().observe(getViewLifecycleOwner(), trail -> {
             if(trail != null) {
                 Timber.d("updating livedata in viewmodel");
+                Timber.d("trail info page = %s",trail.getUrl());
                 binding.setTrail(trail);
                 addTrailMarker();
                 listener.updateProgressBar();

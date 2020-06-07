@@ -61,7 +61,7 @@
                 app:difficultyText="@{includedTrail.difficulty}"
                 app:difficultyTextColor="@{includedTrail.difficulty}"
                 android:textSize="@dimen/trail_detail_textview_difficulty_text_size"
-                android:layout_marginTop="@dimen/trail_detail_textview_vertical_margin_large"
+                android:layout_marginTop="@dimen/trail_detail_textview_vertical_margin"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/map_fragment_container"
                 app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_trail_detail_right"
@@ -122,6 +122,22 @@
                 app:layout_constraintStart_toStartOf="@+id/guideline_vertical_trail_detail_right"
                 app:layout_constraintEnd_toEndOf="@+id/guideline_vertical_trail_detail_right"
                 tools:text="@string/sample_trail_summary"/>
+
+            <TextView
+                android:id="@+id/textview_trail_link"
+                style="@style/trail_detail_textview_style"
+                android:layout_marginEnd="@dimen/trail_detail_textview_horizontal_margin"
+                android:textSize="@dimen/trail_detail_textview_trail_summary_text_size"
+                app:urlLink="@{includedTrail.url}"
+                android:textColor="?attr/themeTextViewTextColorLight"
+                android:textAlignment="center"
+                android:layout_marginTop="@dimen/trail_detail_textview_see_more_vertical_margin"
+                android:padding="@dimen/trail_detail_textview_see_more_padding"
+                app:layout_constraintTop_toBottomOf="@+id/textview_trail_summary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline_vertical_trail_detail_right"
+                app:layout_constraintEnd_toEndOf="@+id/guideline_vertical_trail_detail_right"
+                tools:text="@string/trail_see_more"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

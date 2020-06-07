@@ -1,12 +1,24 @@
 package com.example.android.trailfinder.utilities;
 
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
+import android.text.Html;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.BindingAdapter;
 
 import com.example.android.trailfinder.R;
 import com.squareup.picasso.Picasso;
+
+import timber.log.Timber;
 
 public class BindingUtils {
 
@@ -35,9 +47,11 @@ public class BindingUtils {
         if(difficulty != null) {
             switch (difficulty) {
                 case "green":
+                case "greenBlue":
                     view.setTextColor(view.getResources().getColor(R.color.colorGreen));
                     break;
                 case "blue":
+                case "blueBlack":
                     view.setTextColor(view.getResources().getColor(R.color.colorBlue));
                     break;
                 case "black":
@@ -54,9 +68,11 @@ public class BindingUtils {
         if(difficulty != null) {
             switch (difficulty) {
                 case "green":
+                case "greenBlue":
                     view.setText(R.string.trail_difficulty_easy);
                     break;
                 case "blue":
+                case "blueBlack":
                     view.setText(R.string.trail_difficulty_moderate);
                     break;
                 case "black":
@@ -79,6 +95,26 @@ public class BindingUtils {
             } else {
                 view.setText(summary);
             }
+        }
+    }
+
+    @BindingAdapter({"urlLink"})
+    public static void setTrailLink(TextView view, String url) {
+        if(url != null) {
+            String text = view.getResources().getString(R.string.trail_see_more);
+            SpannableString spannableString = new SpannableString(text);
+            ClickableSpan clickableSpan = new ClickableSpan() {
+                @Override
+                public void onClick(@NonNull View widget) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(url));
+                    view.getContext().startActivity(intent);
+                }
+            };
+            spannableString.setSpan(clickableSpan,0,text.length(),
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            view.setText(spannableString);
+            view.setMovementMethod(LinkMovementMethod.getInstance());
         }
     }
 

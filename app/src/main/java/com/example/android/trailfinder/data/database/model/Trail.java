@@ -26,6 +26,9 @@ public class Trail {
     @SerializedName("location")
     private String location;
     @Expose
+    @SerializedName("url")
+    private String url;
+    @Expose
     @SerializedName("imgMedium")
     private String image;
     @Expose
@@ -53,7 +56,7 @@ public class Trail {
     private long lastRefresh;
 
     public Trail(int id, String name, String summary, String difficulty,
-                 String location, String image, double length, int ascent,
+                 String location, String url, String image, double length, int ascent,
                  int descent, int high, int low, double longitude, double latitude,
                  long lastRefresh) {
 
@@ -62,6 +65,7 @@ public class Trail {
         this.summary = summary;
         this.difficulty = difficulty;
         this.location = location;
+        this.url = url;
         this.image = image;
         this.length = length;
         this.ascent = ascent;
@@ -111,6 +115,14 @@ public class Trail {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getImage() {

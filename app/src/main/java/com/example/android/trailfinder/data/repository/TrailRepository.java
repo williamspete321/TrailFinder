@@ -17,6 +17,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import timber.log.Timber;
 
 public class TrailRepository {
 
@@ -74,7 +75,9 @@ public class TrailRepository {
                         .enqueue(new Callback<TrailList>() {
                             @Override
                             public void onResponse(Call<TrailList> call, Response<TrailList> response) {
+                                Timber.d("onResponse called");
                                 if (response.body() != null) {
+                                    Timber.d("Response is not null");
                                     List<Trail> trails = response.body().getTrails();
                                     for (Trail trail : trails) {
                                         trail.setLastRefresh(System.currentTimeMillis());

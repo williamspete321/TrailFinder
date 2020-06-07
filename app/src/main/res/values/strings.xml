@@ -16,15 +16,14 @@
     <string name="trail_difficulty_easy">Easy</string>
     <string name="trail_difficulty_moderate">Moderate</string>
     <string name="trail_difficulty_difficult">Difficult</string>
-
     <string name="trail_lat_lon_snippet">Lat: %1$.5f, Lon: %2$.5f</string>
-
     <string name="trail_length">%1$.1f mi</string>
     <string name="trail_ascent"><b>Ascent: </b>%1$,d\'</string>
     <string name="trail_descent"><b>Descent: </b>%1$,d\'</string>
     <string name="trail_high"><b>High: </b>%1$,d\'</string>
     <string name="trail_low"><b>Low: </b>%1$,d\'</string>
     <string name="trail_needs_summary">needs summary</string>
+    <string name="trail_see_more">See More Here</string>
 
     <string name="trail_no_description_available">No description available</string>
 
@@ -37,6 +36,7 @@
     <string name="sample_trail_low">6,289\'</string>
     <string name="sample_trail_summary">A fun singletrack lollipop loop up and
         around Mt. Galbraith\'s peak with views in all directions.</string>
+    <string name="sample_trail_url">https://www.hikingproject.com/trail/7000130/bear-peak-out-and-back</string>
     <string name="appwidget_default_text">Data Not Available</string>
     <string name="add_widget">Add widget</string>
     <string name="last_viewed_trail_id_key">Last Viewed Trail ID Key</string>
