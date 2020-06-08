@@ -32,11 +32,13 @@
     <dimen name="about_imageview_width">300dp</dimen>
     <dimen name="about_imageview_height">300dp</dimen>
 
+    <dimen name="trail_detail_textview_layout_width">0dp</dimen>
     <dimen name="trail_detail_textview_padding">8dp</dimen>
     <dimen name="trail_detail_textview_vertical_margin_small">8dp</dimen>
     <dimen name="trail_detail_textview_vertical_margin">16dp</dimen>
     <dimen name="trail_detail_textview_vertical_margin_large">32dp</dimen>
     <dimen name="trail_detail_textview_horizontal_margin">16dp</dimen>
+    <dimen name="trail_detail_textview_title_horizontal_margin">0dp</dimen>
     <dimen name="trail_detail_textview_difficulty_text_size">36sp</dimen>
     <dimen name="trail_detail_textview_trail_length_text_size">36sp</dimen>
     <dimen name="trail_detail_textview_trail_info_text_size">24sp</dimen>

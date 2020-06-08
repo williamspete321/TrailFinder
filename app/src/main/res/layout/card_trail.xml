@@ -13,9 +13,8 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
         android:id="@+id/trail_cardview"
-        android:layout_margin="@dimen/cardview_margin_vertical"
         card_view:cardCornerRadius="@dimen/cardview_corner_radius"
         card_view:cardElevation="@dimen/cardview_default_elevation"
         card_view:cardBackgroundColor="?attr/themePrimary">

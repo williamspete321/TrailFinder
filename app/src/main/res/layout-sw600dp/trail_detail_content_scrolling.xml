@@ -39,7 +39,7 @@
                 android:layout_width="@dimen/trail_detail_guideline_horizontal_margin"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.5"/>
+                app:layout_constraintGuide_percent="0.6"/>
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline_vertical_trail_detail"
@@ -56,7 +56,6 @@
                 android:textSize="@dimen/trail_detail_textview_difficulty_text_size"
                 app:layout_constraintTop_toBottomOf="@+id/guideline_horizontal_trail_detail"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_trail_detail"
                 tools:text="@string/sample_trail_difficulty"/>
 
             <TextView
@@ -104,7 +103,6 @@
             <TextView
                 android:id="@+id/textview_trail_summary"
                 style="@style/trail_detail_textview_style"
-                android:layout_marginEnd="@dimen/trail_detail_textview_horizontal_margin"
                 app:summaryText="@{includedTrail.summary}"
                 android:textSize="@dimen/trail_detail_textview_trail_summary_text_size"
                 android:textColor="?attr/themeTextViewTextColorLight"

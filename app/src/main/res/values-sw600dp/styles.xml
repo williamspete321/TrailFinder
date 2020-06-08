@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="trail_detail_textview_style">
+        <item name="android:layout_width">@dimen/trail_detail_textview_layout_width</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/trail_detail_textview_padding</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginTop">@dimen/trail_detail_textview_vertical_margin_small</item>
+        <item name="android:layout_marginStart">@dimen/trail_detail_textview_horizontal_margin</item>
+        <item name="android:layout_marginEnd">@dimen/trail_detail_textview_horizontal_margin</item>
+    </style>
+</resources>

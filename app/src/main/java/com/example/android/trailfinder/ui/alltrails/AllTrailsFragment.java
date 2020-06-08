@@ -92,10 +92,12 @@ public class AllTrailsFragment extends Fragment
     private void setupRecyclerView() {
         RecyclerView recyclerView = binding.trailListRecyclerview;
         int numberOfColumns = 1;
+        int viewMargin = 16;
         if(isLandscape()) {
             numberOfColumns = 2;
         }
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),numberOfColumns));
+        recyclerView.addItemDecoration(new AllTrailsRecyclerViewMargin(numberOfColumns,viewMargin));
         adapter = new AllTrailsAdapter(getActivity());
         adapter.setOnItemClickListener(this);
         recyclerView.setAdapter(adapter);
