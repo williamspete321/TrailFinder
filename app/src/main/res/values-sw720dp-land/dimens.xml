@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <dimen name="trail_detail_textview_horizontal_margin">16dp</dimen>
-    <dimen name="trail_detail_textview_trail_summary_land_max_width">350dp</dimen>
-    <dimen name="trail_detail_textview_see_more_vertical_margin">16dp</dimen>
-</resources>

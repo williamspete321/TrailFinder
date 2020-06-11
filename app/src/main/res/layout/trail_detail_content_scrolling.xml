@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.6" />
+            app:layout_constraintGuide_percent="0.55" />
 
         <TextView
             android:id="@+id/textview_trail_difficulty"
@@ -98,7 +98,6 @@
         <TextView
             android:id="@+id/textview_trail_link"
             style="@style/trail_detail_textview_style"
-            android:layout_marginEnd="@dimen/trail_detail_textview_horizontal_margin"
             android:textAlignment="center"
             android:textColor="?attr/themeTextViewTextColorLight"
             android:textSize="@dimen/trail_detail_textview_trail_summary_text_size"
