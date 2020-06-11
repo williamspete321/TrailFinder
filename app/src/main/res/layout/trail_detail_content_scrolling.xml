@@ -5,133 +5,111 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="includedTrail"
             type="com.example.android.trailfinder.data.database.model.Trail" />
     </data>
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/nestedScrollView"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/trail_details"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?attr/themeContentBackground"
-        android:fillViewport="true"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context=".ui.traildetail.TrailDetailActivity"
-        tools:showIn="@layout/activity_trail_detail">
+        android:paddingStart="@dimen/trail_detail_horizontal_padding"
+        android:paddingTop="@dimen/trail_detail_vertical_padding"
+        android:paddingEnd="@dimen/trail_detail_horizontal_padding"
+        android:paddingBottom="@dimen/trail_detail_vertical_padding">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_vertical_trail_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.6" />
 
-            <fragment
-                android:id="@+id/map_fragment_container"
-                class="com.example.android.trailfinder.ui.traildetail.MyMapFragment"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_trail_detail"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/textview_trail_difficulty"
+            style="@style/trail_detail_textview_style"
+            android:textSize="@dimen/trail_detail_textview_difficulty_text_size"
+            app:difficultyText="@{includedTrail.difficulty}"
+            app:difficultyTextColor="@{includedTrail.difficulty}"
+            app:layout_constraintBottom_toTopOf="@+id/textview_trail_ascent"
+            app:layout_constraintStart_toStartOf="@+id/trail_details"
+            app:layout_constraintTop_toTopOf="@+id/trail_details"
+            tools:text="@string/sample_trail_difficulty" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline_horizontal_trail_detail"
-                android:layout_width="@dimen/trail_detail_guideline_horizontal_margin"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.5"/>
+        <TextView
+            android:id="@+id/textview_trail_length"
+            style="@style/trail_detail_textview_style"
+            android:text="@{@string/trail_length(includedTrail.length)}"
+            android:textColor="@color/colorBrownDark"
+            android:textSize="@dimen/trail_detail_textview_trail_length_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/textview_trail_difficulty"
+            app:layout_constraintStart_toStartOf="@+id/guideline_vertical_trail_detail"
+            tools:text="@string/sample_trail_length" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline_vertical_trail_detail"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/trail_detail_guideline_vertical_margin"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.5"/>
+        <TextView
+            android:id="@+id/textview_trail_ascent"
+            style="@style/trail_detail_textview_info_style"
+            android:text="@{@string/trail_ascent(includedTrail.ascent)}"
+            app:layout_constraintBottom_toTopOf="@+id/textview_trail_descent"
+            app:layout_constraintStart_toStartOf="@+id/trail_details"
+            app:layout_constraintTop_toBottomOf="@+id/textview_trail_difficulty"
+            tools:text="@string/sample_trail_ascent" />
 
-            <TextView
-                android:id="@+id/textview_trail_difficulty"
-                style="@style/trail_detail_textview_style"
-                app:difficultyText="@{includedTrail.difficulty}"
-                app:difficultyTextColor="@{includedTrail.difficulty}"
-                android:textSize="@dimen/trail_detail_textview_difficulty_text_size"
-                app:layout_constraintTop_toBottomOf="@+id/guideline_horizontal_trail_detail"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_trail_detail"
-                tools:text="@string/sample_trail_difficulty"/>
+        <TextView
+            android:id="@+id/textview_trail_high"
+            style="@style/trail_detail_textview_info_style"
+            android:text="@{@string/trail_high(includedTrail.high)}"
+            app:layout_constraintBottom_toBottomOf="@+id/textview_trail_ascent"
+            app:layout_constraintStart_toStartOf="@+id/guideline_vertical_trail_detail"
+            tools:text="@string/sample_trail_high" />
 
-            <TextView
-                android:id="@+id/textview_trail_length"
-                style="@style/trail_detail_textview_style"
-                android:text="@{@string/trail_length(includedTrail.length)}"
-                android:textSize="@dimen/trail_detail_textview_trail_length_text_size"
-                android:textColor="@color/colorBrownDark"
-                app:layout_constraintTop_toBottomOf="@+id/guideline_horizontal_trail_detail"
-                app:layout_constraintStart_toStartOf="@+id/guideline_vertical_trail_detail"
-                tools:text="@string/sample_trail_length"/>
+        <TextView
+            android:id="@+id/textview_trail_descent"
+            style="@style/trail_detail_textview_info_style"
+            android:text="@{@string/trail_descent(includedTrail.descent)}"
+            app:layout_constraintBottom_toTopOf="@+id/textview_trail_summary"
+            app:layout_constraintStart_toStartOf="@+id/trail_details"
+            app:layout_constraintTop_toBottomOf="@+id/textview_trail_ascent"
+            tools:text="@string/sample_trail_descent" />
 
-            <TextView
-                android:id="@+id/textview_trail_ascent"
-                style="@style/trail_detail_textview_info_style"
-                android:text="@{@string/trail_ascent(includedTrail.ascent)}"
-                app:layout_constraintTop_toBottomOf="@+id/textview_trail_difficulty"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:text="@string/sample_trail_ascent"/>
+        <TextView
+            android:id="@+id/textview_trail_low"
+            style="@style/trail_detail_textview_info_style"
+            android:text="@{@string/trail_low(includedTrail.low)}"
+            app:layout_constraintBottom_toBottomOf="@+id/textview_trail_descent"
+            app:layout_constraintStart_toStartOf="@+id/guideline_vertical_trail_detail"
+            tools:text="@string/sample_trail_low" />
 
-            <TextView
-                android:id="@+id/textview_trail_high"
-                style="@style/trail_detail_textview_info_style"
-                android:text="@{@string/trail_high(includedTrail.high)}"
-                app:layout_constraintTop_toBottomOf="@+id/textview_trail_length"
-                app:layout_constraintStart_toStartOf="@+id/guideline_vertical_trail_detail"
-                tools:text="@string/sample_trail_high"/>
+        <TextView
+            android:id="@+id/textview_trail_summary"
+            style="@style/trail_detail_textview_style"
+            android:textAlignment="textStart"
+            android:textColor="?attr/themeTextViewTextColorLight"
+            android:textSize="@dimen/trail_detail_textview_trail_summary_text_size"
+            app:layout_constraintBottom_toTopOf="@+id/textview_trail_link"
+            app:layout_constraintEnd_toEndOf="@+id/trail_details"
+            app:layout_constraintStart_toStartOf="@+id/trail_details"
+            app:layout_constraintTop_toBottomOf="@+id/textview_trail_descent"
+            app:summaryText="@{includedTrail.summary}"
+            tools:text="@string/sample_trail_summary" />
 
-            <TextView
-                android:id="@+id/textview_trail_descent"
-                style="@style/trail_detail_textview_info_style"
-                android:text="@{@string/trail_descent(includedTrail.descent)}"
-                app:layout_constraintTop_toBottomOf="@+id/textview_trail_ascent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:text="@string/sample_trail_descent"/>
+        <TextView
+            android:id="@+id/textview_trail_link"
+            style="@style/trail_detail_textview_style"
+            android:layout_marginEnd="@dimen/trail_detail_textview_horizontal_margin"
+            android:textAlignment="center"
+            android:textColor="?attr/themeTextViewTextColorLight"
+            android:textSize="@dimen/trail_detail_textview_trail_summary_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/trail_details"
+            app:layout_constraintEnd_toEndOf="@+id/trail_details"
+            app:layout_constraintStart_toStartOf="@+id/trail_details"
+            app:layout_constraintTop_toBottomOf="@+id/textview_trail_summary"
+            app:urlLink="@{includedTrail.url}"
+            tools:text="@string/trail_see_more" />
 
-            <TextView
-                android:id="@+id/textview_trail_low"
-                style="@style/trail_detail_textview_info_style"
-                android:text="@{@string/trail_low(includedTrail.low)}"
-                app:layout_constraintTop_toBottomOf="@+id/textview_trail_high"
-                app:layout_constraintStart_toStartOf="@+id/guideline_vertical_trail_detail"
-                tools:text="@string/sample_trail_low"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/textview_trail_summary"
-                style="@style/trail_detail_textview_style"
-                android:layout_marginEnd="@dimen/trail_detail_textview_horizontal_margin"
-                app:summaryText="@{includedTrail.summary}"
-                android:textSize="@dimen/trail_detail_textview_trail_summary_text_size"
-                android:textColor="?attr/themeTextViewTextColorLight"
-                android:textAlignment="textStart"
-                app:layout_constraintTop_toBottomOf="@+id/textview_trail_descent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:text="@string/sample_trail_summary"/>
-
-            <TextView
-                android:id="@+id/textview_trail_link"
-                style="@style/trail_detail_textview_style"
-                android:layout_marginEnd="@dimen/trail_detail_textview_horizontal_margin"
-                android:textSize="@dimen/trail_detail_textview_trail_summary_text_size"
-                app:urlLink="@{includedTrail.url}"
-                android:layout_marginTop="@dimen/trail_detail_textview_see_more_vertical_margin"
-                android:padding="@dimen/trail_detail_textview_see_more_padding"
-                android:textColor="?attr/themeTextViewTextColorLight"
-                android:textAlignment="center"
-                app:layout_constraintTop_toBottomOf="@+id/textview_trail_summary"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:text="@string/trail_see_more"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.core.widget.NestedScrollView>
 
 </layout>

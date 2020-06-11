@@ -80,7 +80,7 @@ public class TrailDetailFragment extends Fragment implements OnMapReadyCallback 
         }
 
         binding = FragmentTrailDetailBinding.inflate(inflater, container, false);
-        nestedScrollView = binding.trailDetailScrollingLayout.nestedScrollView;
+        nestedScrollView = binding.nestedScrollView;
 
         ((AppCompatActivity) getActivity()).setSupportActionBar(binding.fragmentDetailToolbar);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);

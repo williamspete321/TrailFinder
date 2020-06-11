@@ -4,4 +4,7 @@
 
     <dimen name="about_imageview_width">125dp</dimen>
     <dimen name="about_imageview_height">125dp</dimen>
+
+    <dimen name="trail_detail_textview_see_more_padding">0dp</dimen>
+    <dimen name="trail_detail_textview_see_more_vertical_margin">16dp</dimen>
 </resources>

@@ -59,11 +59,11 @@
             android:layout_height="@dimen/about_imageview_height"
             android:layout_marginTop="@dimen/about_textview_vertical_margin"
             android:src="@drawable/hiker"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/contact_textview"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/contact_textview"
+            app:layout_constraintVertical_bias="0.1" />
 
         <TextView
             android:id="@+id/note_textview"

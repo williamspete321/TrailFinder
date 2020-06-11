@@ -2,4 +2,5 @@
 <resources>
     <dimen name="app_bar_height">320dp</dimen>
     <dimen name="trail_detail_textview_horizontal_margin">64dp</dimen>
+    <dimen name="cardview_layout_height">300dp</dimen>
 </resources>
