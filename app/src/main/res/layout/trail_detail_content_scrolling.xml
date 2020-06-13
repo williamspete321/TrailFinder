@@ -84,10 +84,9 @@
 
         <TextView
             android:id="@+id/textview_trail_summary"
-            style="@style/trail_detail_textview_style"
+            style="@style/trail_detail_textview_additional_info_style"
             android:textAlignment="textStart"
             android:textColor="?attr/themeTextViewTextColorLight"
-            android:textSize="@dimen/trail_detail_textview_trail_summary_text_size"
             app:layout_constraintBottom_toTopOf="@+id/textview_trail_link"
             app:layout_constraintEnd_toEndOf="@+id/trail_details"
             app:layout_constraintStart_toStartOf="@+id/trail_details"
@@ -97,10 +96,8 @@
 
         <TextView
             android:id="@+id/textview_trail_link"
-            style="@style/trail_detail_textview_style"
+            style="@style/trail_detail_textview_additional_info_style"
             android:textAlignment="center"
-            android:textColor="?attr/themeTextViewTextColorLight"
-            android:textSize="@dimen/trail_detail_textview_trail_summary_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/trail_details"
             app:layout_constraintEnd_toEndOf="@+id/trail_details"
             app:layout_constraintStart_toStartOf="@+id/trail_details"

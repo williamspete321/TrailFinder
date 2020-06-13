@@ -12,9 +12,9 @@
     </data>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/trail_cardview"
         android:layout_width="match_parent"
         android:layout_height="@dimen/cardview_layout_height"
-        android:id="@+id/trail_cardview"
         card_view:cardCornerRadius="@dimen/cardview_corner_radius"
         card_view:cardElevation="@dimen/cardview_default_elevation"
         card_view:cardBackgroundColor="?attr/themePrimary">

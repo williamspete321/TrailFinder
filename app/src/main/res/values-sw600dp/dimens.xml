@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="app_bar_height">320dp</dimen>
+
     <dimen name="trail_detail_horizontal_padding">64dp</dimen>
+
+    <dimen name="recycler_view_margin_top">16dp</dimen>
+
     <dimen name="cardview_layout_height">300dp</dimen>
+
+    <dimen name="about_textview_horizontal_padding">32dp</dimen>
+    <dimen name="about_textview_vertical_padding">16dp</dimen>
 </resources>

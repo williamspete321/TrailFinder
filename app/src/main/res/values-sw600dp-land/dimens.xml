@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="trail_detail_horizontal_padding">24dp</dimen>
-    <dimen name="app_bar_height">320dp</dimen>
+
+    <dimen name="about_imageview_width">200dp</dimen>
+    <dimen name="about_imageview_height">200dp</dimen>
 </resources>

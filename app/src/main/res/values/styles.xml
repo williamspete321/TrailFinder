@@ -27,7 +27,6 @@
         <item name="themeButtonIconColor">@color/colorBrown</item>
         <item name="themeButtonTextColor">@color/colorBrown</item>
         <item name="themeContentBackground">@color/colorBrownLight</item>
-        <item name="themeContentBackgroundLight">@color/colorBrownExtraLight</item>
         <item name="themeTextViewTextColorLight">@color/colorBrown</item>
         <item name="themeTextViewTextColorDark">@color/colorBrownDark</item>
     </style>
@@ -48,9 +47,11 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <style name="about_textview_info_style" parent="@style/about_textview_style">
+    <style name="about_textview_note_style" parent="@style/about_textview_style">
+        <item name="android:paddingBottom">@dimen/about_textview_vertical_padding</item>
         <item name="android:paddingStart">@dimen/about_textview_horizontal_padding</item>
         <item name="android:paddingEnd">@dimen/about_textview_horizontal_padding</item>
+        <item name="android:textSize">@dimen/about_textview_textsize_small</item>
     </style>
 
     <style name="trail_detail_textview_style">
@@ -62,6 +63,10 @@
     <style name="trail_detail_textview_info_style" parent="@style/trail_detail_textview_style">
         <item name="android:textSize">@dimen/trail_detail_textview_trail_info_text_size</item>
         <item name="android:textColor">?attr/themeTextViewTextColorDark</item>
+    </style>
+
+    <style name="trail_detail_textview_additional_info_style" parent="@style/trail_detail_textview_style">
+        <item name="android:textSize">@dimen/trail_detail_textview_trail_summary_text_size</item>
     </style>
 
 </resources>

@@ -25,50 +25,50 @@
             style="@style/about_textview_style"
             android:textSize="@dimen/about_textview_textsize_title"
             android:textStyle="bold"
-            android:layout_marginTop="@dimen/about_textview_vertical_margin"
-            app:layout_constraintTop_toBottomOf="@+id/activity_about_toolbar"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activity_about_toolbar"
+            app:layout_constraintVertical_bias="0.15"
             tools:text="@string/app_name" />
 
         <TextView
             android:id="@+id/developed_by_textview"
-            style="@style/about_textview_info_style"
-            android:layout_marginTop="@dimen/about_textview_vertical_margin_small"
+            style="@style/about_textview_style"
+            android:layout_marginTop="@dimen/about_textview_vertical_margin"
             android:text="@string/developed_by"
             android:textSize="@dimen/about_textview_textsize_regular"
-            app:layout_constraintStart_toStartOf="@+id/title_textview"
             app:layout_constraintEnd_toEndOf="@+id/title_textview"
+            app:layout_constraintHorizontal_bias="0.506"
+            app:layout_constraintStart_toStartOf="@+id/title_textview"
             app:layout_constraintTop_toBottomOf="@+id/title_textview"
             tools:text="@string/developed_by" />
 
         <TextView
             android:id="@+id/contact_textview"
-            style="@style/about_textview_info_style"
-            android:layout_marginTop="@dimen/about_textview_vertical_margin_small"
+            style="@style/about_textview_style"
+            android:layout_marginTop="@dimen/about_textview_vertical_margin"
             android:text="@string/contact"
             android:textSize="@dimen/about_textview_textsize_regular"
-            app:layout_constraintStart_toStartOf="@+id/title_textview"
             app:layout_constraintEnd_toEndOf="@+id/title_textview"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintStart_toStartOf="@+id/title_textview"
             app:layout_constraintTop_toBottomOf="@+id/developed_by_textview"
-            tools:text="@string/contact"/>
+            tools:text="@string/contact" />
 
         <ImageView
             android:id="@+id/hiker_image"
             android:layout_width="@dimen/about_imageview_width"
             android:layout_height="@dimen/about_imageview_height"
-            android:layout_marginTop="@dimen/about_textview_vertical_margin"
             android:src="@drawable/hiker"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:contentDescription="@string/hiker_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/contact_textview"
-            app:layout_constraintVertical_bias="0.1" />
+            app:layout_constraintTop_toBottomOf="@+id/contact_textview" />
 
         <TextView
             android:id="@+id/note_textview"
-            style="@style/about_textview_info_style"
-            android:layout_marginBottom="@dimen/about_textview_vertical_margin"
+            style="@style/about_textview_note_style"
             android:text="@string/note"
             android:textSize="@dimen/about_textview_textsize_small"
             app:layout_constraintStart_toStartOf="parent"

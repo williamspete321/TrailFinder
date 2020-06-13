@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="button_text_size">26sp</dimen>
+    <dimen name="button_padding">16dp</dimen>
+    <dimen name="button_margin_vertical">128dp</dimen>
+    <dimen name="button_margin_horizontal">128dp</dimen>
+    <dimen name="button_elevation">4dp</dimen>
+
+    <dimen name="trail_detail_horizontal_padding">128dp</dimen>
+
+    <dimen name="cardview_layout_height">375dp</dimen>
+
+    <dimen name="about_textview_horizontal_padding">64dp</dimen>
+    <dimen name="about_textview_vertical_padding">32dp</dimen>
+    <dimen name="about_textview_textsize_small">24sp</dimen>
+    <dimen name="about_textview_textsize_regular">28sp</dimen>
+    <dimen name="about_textview_textsize_title">52sp</dimen>
+    <dimen name="about_imageview_width">400dp</dimen>
+    <dimen name="about_imageview_height">400dp</dimen>
+</resources>

@@ -87,7 +87,6 @@
                     android:layout_height="match_parent"
                     android:layout_weight=".4"
                     bind:includedTrail="@{trail}"/>
-
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>

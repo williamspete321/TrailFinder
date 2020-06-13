@@ -12,7 +12,7 @@
     <dimen name="button_margin_horizontal">64dp</dimen>
     <dimen name="button_elevation">4dp</dimen>
 
-    <dimen name="recycler_view_padding">16dp</dimen>
+    <dimen name="recycler_view_margin_top">8dp</dimen>
 
     <dimen name="cardview_layout_height">250dp</dimen>
     <dimen name="cardview_text_size">30sp</dimen>
@@ -22,17 +22,14 @@
 
     <dimen name="vertical_margin_fragment_insert">48dp</dimen>
 
-    <dimen name="map_vertical_margin">16dp</dimen>
-
-    <dimen name="about_textview_vertical_margin">16dp</dimen>
-    <dimen name="about_textview_vertical_margin_small">8dp</dimen>
+    <dimen name="about_textview_vertical_margin">8dp</dimen>
     <dimen name="about_textview_horizontal_padding">16dp</dimen>
-    <dimen name="about_textview_textsize_small">14sp</dimen>
-    <dimen name="about_textview_textsize_regular">18sp</dimen>
-    <dimen name="about_textview_textsize_title">40sp</dimen>
+    <dimen name="about_textview_vertical_padding">16dp</dimen>
+    <dimen name="about_textview_textsize_small">16sp</dimen>
+    <dimen name="about_textview_textsize_regular">20sp</dimen>
+    <dimen name="about_textview_textsize_title">44sp</dimen>
     <dimen name="about_imageview_width">300dp</dimen>
     <dimen name="about_imageview_height">300dp</dimen>
-    <dimen name="about_imageview_layout_constraint_vertical_bias">0.2</dimen>
 
     <dimen name="trail_detail_horizontal_padding">16dp</dimen>
     <dimen name="trail_detail_vertical_padding">16dp</dimen>
@@ -42,7 +39,4 @@
     <dimen name="trail_detail_textview_trail_info_text_size">24sp</dimen>
     <dimen name="trail_detail_textview_trail_summary_text_size">20sp</dimen>
     <dimen name="trail_detail_textview_trail_summary_land_max_width">350dp</dimen>
-
-    <dimen name="widget_margin">8dp</dimen>
-
 </resources>
