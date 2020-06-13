@@ -69,6 +69,7 @@ public class AllTrailsFragment extends Fragment
         View view = binding.getRoot();
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
+        setupRecyclerView();
         getLastLocation();
 
         return view;
@@ -85,7 +86,6 @@ public class AllTrailsFragment extends Fragment
     }
     
     private void setupUI() {
-        setupRecyclerView();
         setupViewModel();
     }
 
