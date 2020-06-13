@@ -10,7 +10,7 @@ import com.example.android.trailfinder.data.database.model.Trail;
 
 import timber.log.Timber;
 
-@Database(entities = {Trail.class}, version = 6)
+@Database(entities = {Trail.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String DATABASE_NAME = "trails";
