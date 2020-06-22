@@ -3,17 +3,17 @@ apply plugin: 'com.android.application'
 android {
     signingConfigs {
         release {
-            keyAlias = 'trailKey'
-            keyPassword 'c0rOnaD0!1!415#!$'
-            storeFile file("$rootProject/keystore.jks")
-            storePassword 'm1l!3rp3@kWa5Legi7'
+            keyAlias = 'upload'
+            keyPassword 'uGl7k1TtE4sA53me@N'
+            storeFile file("/Users/Gerard/Desktop/Android/Udacity/TrailFinder/keystore.jks")
+            storePassword '$UcC3$#Fu1h@8iTs'
         }
     }
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
 
     defaultConfig {
-        applicationId "com.example.android.trailfinder"
+        applicationId "first.project.android.trailfinder"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
@@ -33,8 +33,10 @@ android {
             resValue "string", "GOOGLE_MAPS_API_KEY", GOOGLE_MAPS_API_KEY_RELEASE
         }
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile(
+                    'proguard-android-optimize.txt'),
                     'proguard-rules.pro'
             signingConfig signingConfigs.release
         }

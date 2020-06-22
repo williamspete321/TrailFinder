@@ -8,7 +8,7 @@
     <data>
         <variable
             name="trail"
-            type="com.example.android.trailfinder.data.database.model.Trail" />
+            type="first.project.android.trailfinder.data.database.model.Trail" />
     </data>
 
     <androidx.cardview.widget.CardView

@@ -8,7 +8,7 @@
     <data>
         <variable
             name="trail"
-            type="com.example.android.trailfinder.data.database.model.Trail" />
+            type="first.project.android.trailfinder.data.database.model.Trail" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context=".ui.traildetail.TrailDetailFragment">
+        tools:context="first.project.android.trailfinder.ui.traildetail.TrailDetailFragment">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar"
@@ -65,7 +65,7 @@
             android:background="?attr/themeContentBackground"
             android:fillViewport="true"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:context=".ui.traildetail.TrailDetailActivity"
+            tools:context="first.project.android.trailfinder.ui.traildetail.TrailDetailActivity"
             tools:showIn="@layout/activity_trail_detail">
 
             <LinearLayout
@@ -75,7 +75,7 @@
 
                 <fragment
                     android:id="@+id/map_fragment_container"
-                    class="com.example.android.trailfinder.ui.traildetail.MyMapFragment"
+                    class="first.project.android.trailfinder.ui.traildetail.MyMapFragment"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"/>

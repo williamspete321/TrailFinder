@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.MainActivityFragment">
+    tools:context="first.project.android.trailfinder.ui.main.MainActivityFragment">
 
     <Button
         android:id="@+id/select_random_trail_button"

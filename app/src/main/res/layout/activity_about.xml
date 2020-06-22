@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?attr/themeContentBackground"
-        tools:context=".ui.about.AboutActivity">
+        tools:context="first.project.android.trailfinder.ui.about.AboutActivity">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/activity_about_toolbar"

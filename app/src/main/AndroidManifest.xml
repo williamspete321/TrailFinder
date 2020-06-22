@@ -6,29 +6,29 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
-        android:name=".application.MyApplication"
+        android:name="first.project.android.trailfinder.application.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/hiker_icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/hiker_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar.Forest">
-        <activity android:name=".ui.about.AboutActivity" />
+        <activity android:name="first.project.android.trailfinder.ui.about.AboutActivity" />
         <activity
-            android:name=".ui.traildetail.TrailDetailActivity"
-            android:parentActivityName=".ui.main.MainActivity">
+            android:name="first.project.android.trailfinder.ui.traildetail.TrailDetailActivity"
+            android:parentActivityName="first.project.android.trailfinder.ui.main.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.main.MainActivity" />
+                android:value="first.project.android.trailfinder.ui.main.MainActivity" />
         </activity>
         <activity
-            android:name=".ui.alltrails.AllTrailsActivity"
-            android:parentActivityName=".ui.main.MainActivity">
+            android:name="first.project.android.trailfinder.ui.alltrails.AllTrailsActivity"
+            android:parentActivityName="first.project.android.trailfinder.ui.main.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.main.MainActivity" />
+                android:value="first.project.android.trailfinder.ui.main.MainActivity" />
         </activity>
-        <activity android:name=".ui.main.MainActivity">
+        <activity android:name="first.project.android.trailfinder.ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
