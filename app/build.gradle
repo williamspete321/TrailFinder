@@ -5,17 +5,17 @@ android {
         release {
             keyAlias = 'upload'
             keyPassword 'uGl7k1TtE4sA53me@N'
-            storeFile file("/Users/Gerard/Desktop/Android/Udacity/TrailFinder/keystore.jks")
+            storeFile file("/Users/Gerard/Documents/Android Learning/zdx/Udacity/TrailFinder/keystore.jks")
             storePassword '$UcC3$#Fu1h@8iTs'
         }
     }
-    compileSdkVersion 29
+    compileSdkVersion 30
     buildToolsVersion "29.0.2"
 
     defaultConfig {
         applicationId "first.project.android.trailfinder"
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 3
         versionName "1.1"
 
