@@ -3,6 +3,7 @@
 
     <string name="about">About</string>
     <string name="developed_by"><b>Developed by: </b>Peter G. Williams</string>
+    <string name="privacy_policy"><a href="https://williamspete321.github.io/trailfinderprivacypolicy.github.io/">Privacy Policy</a></string>
     <string name="contact"><b>Contact: </b><a href="mailto:williamspete321@gmail.com">williamspete321@gmail.com</a></string>
     <string name="note"><b>Note: </b>Trail Finder uses the Hiking Project Data API but is not endorsed or certified by Hiking Project. Icons are by Freepik and Roundicons from flaticon.com.</string>
     <string name="hiker_image">A Man Hiking</string>

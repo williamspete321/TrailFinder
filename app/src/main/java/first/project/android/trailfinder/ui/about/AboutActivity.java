@@ -14,6 +14,7 @@ public class AboutActivity extends AppCompatActivity {
 
     private TextView titleTextView;
     private TextView contactTV;
+    private TextView privacyPolicyTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,8 @@ public class AboutActivity extends AppCompatActivity {
 
         contactTV = binding.contactTextview;
         contactTV.setMovementMethod(LinkMovementMethod.getInstance());
+        privacyPolicyTv = binding.privacyPolicyTextview;
+        privacyPolicyTv.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     @Override

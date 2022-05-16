@@ -56,6 +56,18 @@
             app:layout_constraintTop_toBottomOf="@+id/developed_by_textview"
             tools:text="@string/contact" />
 
+        <TextView
+            android:id="@+id/privacy_policy_textview"
+            style="@style/about_textview_style"
+            android:layout_marginTop="@dimen/about_textview_vertical_margin"
+            android:text="@string/privacy_policy"
+            android:textSize="@dimen/about_textview_textsize_regular"
+            app:layout_constraintEnd_toEndOf="@+id/title_textview"
+            app:layout_constraintHorizontal_bias="0.506"
+            app:layout_constraintStart_toStartOf="@+id/title_textview"
+            app:layout_constraintTop_toBottomOf="@+id/contact_textview"
+            tools:text="@string/privacy_policy" />
+
         <ImageView
             android:id="@+id/hiker_image"
             android:layout_width="@dimen/about_imageview_width"
@@ -64,7 +76,7 @@
             android:contentDescription="@string/hiker_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/contact_textview" />
+            app:layout_constraintTop_toBottomOf="@+id/privacy_policy_textview" />
 
         <TextView
             android:id="@+id/note_textview"
